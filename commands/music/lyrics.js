@@ -1,6 +1,7 @@
 module.exports = {
     name: "lyrics",
     async run(message, args, client) {
+        let guildQueue = client.player.getQueue(message.guild.id);
         const {
             Util,
             MessageEmbed
@@ -8,6 +9,27 @@ module.exports = {
         const soleno = require('solenolyrics');
 
         const search = args.join(' ');
+
+        if(guildQueue){
+            const [lyrics, icon, title, author] = await Promise.all([
+
+                soleno.requestLyricsFor(guildQueue.nowPlaying.name),
+                soleno.requestIconFor(guildQueue.nowPlaying.name),
+                soleno.requestTitleFor(guildQueue.nowPlaying.name),
+                soleno.requestAuthorFor(guildQueue.nowPlaying.name)
+            ]);
+    
+            const embed = new MessageEmbed()
+                .setTitle(title)
+                .setAuthor(author, icon)
+                .setColor('RANDOM');
+    
+            for (const song of Util.splitMessage(lyrics)) {
+                embed.setFooter(song);
+                return message.channel.send({embeds: [embed]})
+            }
+            return;
+        }
 
         if (!search) {
             const embed = new MessageEmbed()

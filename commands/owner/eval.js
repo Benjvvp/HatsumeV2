@@ -16,31 +16,37 @@ module.exports = {
             return await message.channel.send({embeds: [embed]})
         }
         const msg = message;
-        if (!args.length) return msg.channel.send("I need code to evaluate.")
+        if (!args.length){
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(`❌ ¡ There's a mistake !`)
+                .setDescription('**I need code to evaluate.**')
+                .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
+                .setColor("RED")
+            return await message.channel.send({embeds: [embed]})
+        }
         let code = args.join(' ');
         code = code.replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
         let evaled;
         try {
-            const start = process.hrtime();
             evaled = eval(code);
             if (evaled instanceof Promise) {
                 evaled = await evaled;
             }
-            const stop = process.hrtime(start)
-            const response = [
-                `**Output:** \`\`\`js\n${this.clean(util.inspect(evaled, { depth: 0 }))}\n\`\`\``,
-                `**Type:** \`\`\`ts\n${new Type(evaled).is}\n\`\`\``,
-                `**Time Taken** \`\`\`${(((stop[0] * 1e0) + stop[1])) / 1e6}ms \`\`\``
-            ]
-            const res = response.join('\n');
-            if (res.length < 2000) {
-                await msg.channel.send(res)
-            } else {
-                const output = new Discord.MessageAttachment(Buffer.from(res), 'output.txt');
-                await msg.channel.send(output)
-            }
+            const embed = new Discord.MessageEmbed()
+            .setTitle('Eval')
+            .addField('<a:REDARROWHATSUME:889867722178068530> **`Input`**', `\`\`\`js\n${this.clean(args.join(' '))}\n\`\`\``)
+            .addField('<a:GREENARROWHATSUME:889867721750224967> **`Output`**', `\`\`\`js\n${this.clean(util.inspect(evaled, { depth: 0 }))}\n\`\`\``)
+            .addField('<:FOLDERHATSUME:889867722270343269> **`Type`**', `\`\`\`ts\n${new Type(evaled).is}\n\`\`\``)
+            .setColor('GREEN')
+            message.channel.send({embeds: [embed]})
         } catch (err) {
-            return message.channel.send(`Error: \`\`\`xl\n${this.clean(err)}\`\`\``)
+            const embed = new Discord.MessageEmbed()
+                .setTitle('Eval error')
+                .addField('<a:REDARROWHATSUME:889867722178068530> **`Input`**', `\`\`\`js\n${this.clean(args.join(' '))}\n\`\`\``)
+                .addField('<a:GREENARROWHATSUME:889867721750224967> **`Output`**', `\`\`\`xl\n${this.clean(err)}\`\`\``)
+                .addField('<:FOLDERHATSUME:889867722270343269> **`Type`**', `\`\`\`ts\n${new Type(evaled).is}\n\`\`\``)
+                .setColor('RED')
+            message.channel.send({embeds: [embed]})
         }
     },
     clean(text) {

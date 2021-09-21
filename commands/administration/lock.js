@@ -13,7 +13,9 @@ module.exports = {
         if(!lockChannel) lockChannel = message.channel;
 
         await lockChannel.permissionOverwrites.edit(alluser, {
-            SEND_MESSAGES: false
+            READ_MESSAGE_HISTORY: true,
+            SEND_MESSAGES: false,
+            ADD_REACTIONS: false
         }).catch(console.error())
 
         const embedLock = new Discord.MessageEmbed()
