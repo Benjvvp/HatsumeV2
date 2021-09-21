@@ -25,7 +25,6 @@ const player = new Player(client, {
 	quality: 'high',
 	leaveOnEnd: false // This options are optional.
 });
-// You can define the Player as *client.player* to easly access it.
 client.player = player;
 //Initialize Comamnd Manager
 commandHandler(client)
