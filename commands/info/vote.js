@@ -5,7 +5,7 @@ module.exports = {
         
         const embed = new Discord.MessageEmbed()
         .setTitle('¡Vote for Hatsume!')
-        .setDescription('**Top GG - https://top.gg/bot/786361439676923974/vote** \n**Discord Bot List - https://discordbotlist.com/bots/hatsume/upvote**')
+        .setDescription('**Top GG - https://top.gg/bot/874827585417248779** (Awaiting verification)\n**Discord Bot List - https://discordbotlist.com/bots/hatsume/upvote**')
         .setFooter('Thanks for vote.')
         .setColor('BLUE')
         message.channel.send({embeds: [embed]})

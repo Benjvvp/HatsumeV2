@@ -27,6 +27,6 @@ module.exports = {
             .setDescription(`**Suggestion: \`\`${suggest}\`\` \nSuggestion of: <@${message.author.id}>\nSuggestion of server: ${message.guild.name}**`)
             .setColor('GREEN')
             .setTimestamp()
-        client.channels.cache.get('829400764089630761').send({embeds: [embedsned]});
+        client.channels.cache.get('889675034132615219').send({embeds: [embedsned]});
     }
 }
