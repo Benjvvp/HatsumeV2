@@ -1,28 +1,40 @@
 module.exports = {
     name: "serverinfo",
-    run(message, args, client) {
-
+    async run(message, args, client) {
         const Discord = require('discord.js');
+        const server = message.guild;
 
-        var server = message.guild;//Definimos server
+        let boostlevel = {
+            NONE: 'Without boost',
+            TIER_1: 'Boost level 1',
+            TIER_2: 'Boost level 2',
+            TIER_3: 'Boost level 3'
+        }
+        let roleadmin;
+        server.roles.cache.find(role => {
+            if(role.permissions.has('ADMINISTRATOR')) ++roleadmin
+        })
+        let owner = await server.fetchOwner();
 
-
-        const embed = new Discord.MessageEmbed()
-            .setDescription("**CURRENT SERVER INFORMATION**")
+        const embed = new Discord.MessageEmbed() 
+            .addField('**Server information**', `
+            > <:bluepoint:889915814684278784> **Name:** ${server.name}
+            > <:bluepoint:889915814684278784> **ID:** ${server.id}
+            > <:bluepoint:889915814684278784> **Creation:** ${server.createdAt.toDateString().split(" ")[2]}/${server.createdAt.toDateString().split(" ")[1]}/${server.createdAt.toDateString().split(" ")[3]}
+            > <:bluepoint:889915814684278784> **Boost level:** ${boostlevel[server.premiumTier]}
+            > <:bluepoint:889915814684278784> **Region:** ${server.preferredLocale}
+            > <:bluepoint:889915814684278784> **Users:** ${server.memberCount}`, false)
+            .addField('**Owner information**', `
+            > <:bluepoint:889915814684278784> **User:** ${owner.user.username}
+            > <:bluepoint:889915814684278784> **ID:** ${owner.user.id}
+            > <:bluepoint:889915814684278784> **Boost this server:** ${owner.user.premiumSince ? `Yes` : "No"} 
+            `, false)
+            .addField('**Other information**', `
+            > <:bluepoint:889915814684278784> **Number of roles:** ${server.roles.cache.size}
+            > <:bluepoint:889915814684278784> **Number of channels:** ${server.channels.cache.size}
+            `, false)
+            .setColor(`AQUA`)
             .setThumbnail(server.iconURL())
-            .setAuthor(server.name, server.iconURL())//aca va a aparecer el icono y nombre del server
-            .addField('**`📝` ID**', server.id, true)
-            .addField('**`📅` Creation Date**', `${server.createdAt.toDateString().split(" ")[2]}/${server.createdAt.toDateString().split(" ")[1]}/${server.createdAt.toDateString().split(" ")[3]}`, true)
-            .addField("**`📡` Region**", server.preferredLocale, true)
-            .addField("**`📜` Owner of the Server**", `${server.fetchOwner()}`, true)//con esto obtenemos el creador del server
-            .addField("**`📑` Server Owner ID**", `${server.ownerId}`, true)//con esto la id del creador del server
-            .addField("**`📁` Channels**", `${server.channels.cache.size}`, true)
-            //con esto todos los canales del servidor
-            .addField('**`📁` Members**', `${server.memberCount}`, true)//con esto obtenemos los miembros que hay en el server
-            .addField("**`🤖` Bots**", `${server.members.cache.filter(m => m.user.bot).size}`, true)//con esto obtenemos los bots del server
-            .addField('**`🔐` Level of Verifiaction**', `${server.verificationLevel}`, true)//con esto obtenemos el nivel de verificacion del server
-            .addField('**`📚` Roles**', `${server.roles.cache.size}`, true)//con esto la cantidad de roles
-            .setColor("00ffff")//establecemos el color  yo puse random para que salga diferente color
-        message.channel.send({embeds: [embed]});//enviamos el embed
+        await message.channel.send({embeds: [embed]})
     }
 }

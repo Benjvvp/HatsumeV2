@@ -4,72 +4,86 @@ module.exports = {
         const Discord = require('discord.js');
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member; // Definimos usuario, si mencionamos a alguien se obtendra su informacion, si no mencionamos a nadie se obtendra la informacion de "Nosotros"
 
-        let status; // Hacemos un let vacio
-        switch (user.presence.status) {// Hacemos un switch de la funcion Presencia
-            case "online":// En el caso online..
-                status = "`🟢` Online";// hacemos que el status online pase a decir lo siguiente...
+        let status;
+        switch (user.presence.status) {
+            case "online":
+                status = "Online";
                 break;
-            case "dnd":// En el caso dnd..
-                status = "`⛔` Don't disturb";// hacemos que el status dnd pase a decir lo siguiente...
+            case "dnd":
+                status = "Don't disturb";
                 break;
             case "idle":// En el caso idle..
-                status = "`🌙` Absent";// hacemos que el status idle pase a decir lo siguiente...
+                status = "Absent";
                 break;
-            case "offline":// En el caso offline..
-                status = "`⚪` Disconnected";// hacemos que el status offline pase a decir lo siguiente...
+            case "offline":
+                status = "Disconnected";
                 break;
         }
+        let badges1 = {
+            'EARLY_SUPPORTER': '<:earlysupport:889929381340938270>',
+            'DISCORD_EMPLOYEE': '<:discordemployee:889929620869218304>',
+            'DISCORD_PARTNER': '<:discordpartner:889928392802197505>',
+            'HYPESQUAD_EVENTS': '<:hypesquad:889928915290832946>',
+            'HOUSE_BRAVERY': '<:bravery:889922322436329502>',
+            'HOUSE_BRILLIANCE': '<:brilliance:889922322297925693>',
+            'BUGHUNTER_LEVEL_1': '<:bighunterlevel1:889928766569209856>',
+            'BUGHUNTER_LEVEL_2': '<:bighunterlevel2:889928393209045054>',
+            'VERIFIED_DEVELOPER': '<:botsverified:889929159562895490>',
+            'HOUSE_BALANCE': '<:balance:889922322293739610>',
+            'VERIFIED_BOT': '<a:giphyverifid:835970692930863185>',
+          }
+        /* CLient STATUS */
+        let clientStatus = "";
+        if (user.presence.clientStatus) {
+            if (user.presence.clientStatus["web"]) {
+                clientStatus += 'Web'
+            }
+            else if (user.presence.clientStatus["mobile"]) {
+                clientStatus += 'Mobile';
+            }
+            else if (user.presence.clientStatus["desktop"]) {
+                clientStatus += 'Desktop';
+            }
+        } else {
+            clientStatus = status[user.presence.status];
+        }
+        if (!clientStatus)
+        clientStatus = "Offline/Invisible";
+        /* PERMISSION CALCULATOR */
+        let m = message.guild.members.cache.get(user.id) || await message.guild.members.fetch(user.id, { cache: true });
+        let permissions = '';
+        let perms = m.permissions.toArray();
+        if(perms.includes('ADMINISTRATOR')) permissions = 'ADMINISTRATOR';
+        else perms.join(', ')
 
-        const embed = new Discord.MessageEmbed() // Hacemos un nuevo embed
-            .setTitle(`User information ${user.user.username}`) // Titulo - Recibimos el "user" y decimos su "username"
-            .setColor(`#ff8000`)// Color para hacerlo mas bonito <3
-            .setThumbnail(user.user.displayAvatarURL({ dynamic: true })) // Un Thumbnail de la foto de perfil del "user".
-            .addFields(// Hacemos nuevas Fields
-                {
-                    name: "**`📜` Nickname**",// Nombre - Titulo - Caso 1
-                    value: user.nickname ? user.nickname : "He doesn't have a nickname.", // Si el "user" tiene apodo se envia, si es false / no tiene Se envia diciendo que "No tiene Apodo"
-                    inline: true // En linea: SI
-                },
-                {
-                    name: "**`📑` Tag**",// Nombre - Titulo - Caso 1
-                    value: `${user.user.discriminator}`,// Del "user" sacamos su tag / discriminador
-                    inline: true// En linea: SI
-                },
-                {
-                    name: "**`📝` ID**",// Nombre - Titulo - Caso 1
-                    value: user.user.id,// Del "user" sacamos su ID
-                },
-                {
-                    name: "**`🔎` Recent Activity**",// Nombre - Titulo - Caso 1
-                    value: status,// Acá se obtiene el estado del "user" con los casos ya dichos y explicado anteriormente.
-                    inline: true// En linea: SI
-                },
-                {
-                    name: "**`💡` State**",// Nombre - Titulo - Caso 1
-                    value: user.presence.activities[0] ? user.presence.activities[0].state : "No status",// Si el "user" tiene actividad se envia, si no la tiene se envia "Sin Estado"
-                    inline: true// En linea: SI
-                },
-                {
-                    name: '**`🔗` Avatar link**',// Nombre - Titulo - Caso 1
-                    value: `[Aquí](${user.user.displayAvatarURL()})`// Del "user" obtenemos su Avatar Link, Hacemos que dentro del Array se encuentre el Link y cuando se de Click te reenviara una pagina viendo el avatar del "user"
-                },
-                {
-                    name: '**`📅` Date of creation**',// Nombre - Titulo - Caso 1
-                    value: user.user.createdAt.toLocaleDateString("es-pe"),// Del "user" obtenemos su Fecha de creacion y hacemos que el dato local sea a ES-PE, Esto va en codigo segun por lenguaje - EJEMPLOS: es = español , en = english
-                    inline: true// En linea: SI
-                },
-                {
-                    name: '**`📆` Date of entry to the Server**',// Nombre - Titulo - Caso 1
-                    value: user.joinedAt.toLocaleDateString("es-pe"),// Del "user" obtenemos su Fecha de entrada al servidor en donde se envio el mensaje y hacemos que el dato local sea a ES-PE, Esto va en codigo segun por lenguaje - EJEMPLOS: es = español , en = english
-                    inline: true// En linea: SI
-                },
-                {
-                    name: '**`📚` User roles**',// Nombre - Titulo - Caso 1
-                    value: user.roles.cache.map(role => role.toString()).join(" ,"),// Del "user" obtenemos sus roles del server y lo mapeamos tambien lo separamos con una coma ","
-                    inline: true// En linea: SI
-                }
-            )
-
+        const embed = new Discord.MessageEmbed() 
+            .setAuthor(`Information from ${user.user.username}`)
+            .addField('**Information on the server**', `
+            > <:bluepoint:889915814684278784> **Highest role:** ${user.roles.highest}
+            > <:bluepoint:889915814684278784> **Roles:** ${user.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `${roles}`).join(" **|** ") || "No Roles"}
+            > <:bluepoint:889915814684278784> **NickName:** ${user.nickname ? user.nickname : 'None'}
+            > <:bluepoint:889915814684278784> **Boost this server:** ${user.premiumSince ? `Yes` : "No"}`, false)
+            .addField('**States**', `
+            > <:bluepoint:889915814684278784> **Activity:** ${user.presence.game != null ? user.presence.game.name : "Nothing"}
+            > <:bluepoint:889915814684278784> **State:** ${status}
+            > <:bluepoint:889915814684278784> **Device:** ${clientStatus}
+            `, false)
+            .addField('**User information**', `
+            > <:bluepoint:889915814684278784> **Registered:** ${user.user.createdAt.toLocaleDateString("es-pe")}
+            > <:bluepoint:889915814684278784> **Badges:** ${user.user.flags.toArray().length ? user.user.flags.toArray().map(badge => badges1[badge]).join(' ') : "It does not have"}
+            > <:bluepoint:889915814684278784> **Avatar:** ${`[Download](${user.user.displayAvatarURL({
+                format: 'png',
+                dynamic: true
+            })})`}
+            > <:bluepoint:889915814684278784> **Name:** ${user.user.username}
+            > <:bluepoint:889915814684278784> **ID:** ${user.id}
+            `, false)
+            .addField('**Permission**', `\n
+            \`\`\`${permissions}\`\`\`
+            
+            `)
+            .setColor(`AQUA`)
+            .setThumbnail(user.user.displayAvatarURL({ dynamic: true }))
         await message.channel.send({embeds: [embed]})
     }
 }
