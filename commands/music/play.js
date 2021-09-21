@@ -35,7 +35,6 @@ module.exports = {
             if(!guildQueue)
                 queue.stop();
         });
-
         const embed = new Discord.MessageEmbed()
             .setAuthor('Added to the queue!!', message.author.avatarURL({
                 format: "png",

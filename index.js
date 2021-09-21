@@ -23,7 +23,8 @@ const player = new Player(client, {
     leaveOnEmpty: true,
 	volume: 100,
 	quality: 'high',
-	leaveOnEnd: false // This options are optional.
+	leaveOnEnd: false,
+	deafenOnJoin: true // This options are optional.
 });
 client.player = player;
 //Initialize Comamnd Manager
