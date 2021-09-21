@@ -36,7 +36,21 @@ module.exports = {
                 queue.stop();
         });
 
-        if(client.player.getQueue(message.guild.id).songs.length > 1){
+        if(client.player.getQueue(message.guild.id).songs.length > 1 && client.player.getQueue(message.guild.id).songs.length == undefined){
+            const embed = new Discord.MessageEmbed()
+                .setAuthor('It started to reproduce!!', message.author.avatarURL({
+                    format: "png",
+                    dynamic: true
+                }))
+                .setTitle(`${song.name}`)
+                .setURL(`${song.url}`)
+                .setThumbnail(`${song.thumbnail}`)
+                .addField('Channel', `${song.author}`, true)
+                .addField('Duration', `${song.duration}`, true)
+                .addField('Volume', `${song.queue.volume}`, true)
+                .setColor('AQUA')
+            return message.channel.send({embeds: [embed]})
+        } else {
             const embed = new Discord.MessageEmbed()
                 .setAuthor('Added to the queue!!', message.author.avatarURL({
                     format: "png",
@@ -51,18 +65,5 @@ module.exports = {
                 .setColor('AQUA')
             return message.channel.send({embeds: [embed]})
         }
-        const embed = new Discord.MessageEmbed()
-            .setAuthor('It started to reproduce!!', message.author.avatarURL({
-                format: "png",
-                dynamic: true
-            }))
-            .setTitle(`${song.name}`)
-            .setURL(`${song.url}`)
-            .setThumbnail(`${song.thumbnail}`)
-            .addField('Channel', `${song.author}`, true)
-            .addField('Duration', `${song.duration}`, true)
-            .addField('Volume', `${song.queue.volume}`, true)
-            .setColor('AQUA')
-        return message.channel.send({embeds: [embed]})
     }
 }
