@@ -2,14 +2,6 @@ module.exports = {
     name: "infoemoji",
     async run(message, args, client) {
         const { Util, MessageEmbed } = require("discord.js");
-        if (!message.guild.me.permissions.has(`USE_EXTERNAL_EMOJIS`)){
-            const embed = new MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**I need the necessary permissions to execute this command. `'+`USE_EXTERNAL_EMOJIS` +'`**')
-                .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
-                .setColor("RED")
-            return message.channel.send({embeds: [embed]});
-        }
         if(!args[0]){
             const embed = new Discord.MessageEmbed()
             .setAuthor(`❌ ¡ There's a mistake !`)

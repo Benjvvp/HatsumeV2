@@ -3,14 +3,6 @@ module.exports = {
     async run(message, args, client) {
         const Discord = require('discord.js');
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member; // Definimos usuario, si mencionamos a alguien se obtendra su informacion, si no mencionamos a nadie se obtendra la informacion de "Nosotros"
-        if (!message.guild.me.permissions.has(`USE_EXTERNAL_EMOJIS`)){
-            const embed = new MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**I need the necessary permissions to execute this command. `'+`USE_EXTERNAL_EMOJIS` +'`**')
-                .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
-                .setColor("RED")
-            return message.channel.send({embeds: [embed]});
-        }
         let status;
         switch (user.presence.status) {
             case "online":
