@@ -3,7 +3,14 @@ module.exports = {
     run(message, args, client) {
 
         const Discord = require('discord.js');
-
+        if (!message.guild.me.permissions.has(`USE_EXTERNAL_EMOJIS`)){
+            const embed = new MessageEmbed()
+                .setAuthor(`❌ ¡ There's a mistake !`)
+                .setDescription('**I need the necessary permissions to execute this command. `'+`USE_EXTERNAL_EMOJIS` +'`**')
+                .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
+                .setColor("RED")
+            return message.channel.send({embeds: [embed]});
+        }
         const embed = new Discord.MessageEmbed()
             .setAuthor(message.author.username, message.author.avatarURL())
             .setThumbnail("http://millingtonlibrary.info/wp-content/uploads/2015/02/Info-I-Logo.png")
