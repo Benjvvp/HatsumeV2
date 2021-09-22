@@ -5,8 +5,9 @@ module.exports = {
     async run(message, args, client) {
         const Discord = require('discord.js')
         
-        permissionAuth(message, 'MANAGE_CHANNELS')
-
+        let p = permissionAuth(message, 'MANAGE_CHANNELS')
+        if(!p.embeds.MessageEmbed) return;
+        
         let alluser = message.guild.roles.cache.find(aus => aus.name === '@everyone');
 
         let lockChannel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0]);

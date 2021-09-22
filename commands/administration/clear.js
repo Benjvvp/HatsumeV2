@@ -6,8 +6,9 @@ module.exports = {
 
         message.delete();
         
-        permissionAuth(message, 'MANAGE_MESSAGES')
-
+        let p = await permissionAuth(message, 'MANAGE_MESSAGES')
+        if(!p.embeds.MessageEmbed) return;
+        
         if (!args[0])
             return message.channel.send(`Please Give Me An Amount.`);
 

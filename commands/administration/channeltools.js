@@ -6,10 +6,10 @@ const slowchannel = require('./utilHandler/slowchannel');
 module.exports = {
     name: "channeltools",
     async run(message, args, client) {
-        const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction } = require('discord.js')
-        
-        permissionAuth(message, 'MANAGE_CHANNELS')
-        
+        const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction, ContextMenuInteraction } = require('discord.js')
+        let p = await permissionAuth(message, 'MANAGE_CHANNELS')
+        if(!p.embeds.MessageEmbed) return;
+
         /* Principal Embed */
         const row = new MessageActionRow()
         .addComponents(

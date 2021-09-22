@@ -8,8 +8,9 @@ module.exports = {
 
         let user = message.mentions.users.first();
 
-        permissionAuth(message, 'KICK_MEMBERS')
-
+        let p = await permissionAuth(message, 'KICK_MEMBERS')
+        if(!p.embeds.MessageEmbed) return;
+        
         if (message.mentions.users.size < 1){
             const embed = new Discord.MessageEmbed()
                 .setAuthor(`❌ ¡ There's a mistake !`)

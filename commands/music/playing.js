@@ -4,7 +4,14 @@ module.exports = {
     name: "playing",
     async run(message, args, client) {
         let guildQueue = client.player.getQueue(message.guild.id);
-
+        if (!message.guild.me.permissions.has(`EMBED_LINKS`)){
+            const embed = new MessageEmbed()
+                .setAuthor(`❌ ¡ There's a mistake !`)
+                .setDescription('**I need the necessary permissions to execute this command. `'+`EMBED_LINKS` +'`**')
+                .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
+                .setColor("RED")
+            return message.channel.send({embeds: [embed]});
+        }
         if(!message.member.voice.channel){
             const embed = new Discord.MessageEmbed()
                 .setAuthor(`❌ ¡ There's a mistake !`)

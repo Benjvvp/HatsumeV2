@@ -5,8 +5,9 @@ module.exports = {
     async run(message, args, client) {
         const Discord = require('discord.js')
         
-        permissionAuth(message, 'BAN_MEMBERS')
-
+        let p = permissionAuth(message, 'BAN_MEMBERS')
+        if(!p.embeds.MessageEmbed) return;
+        
         let userID = args[0]
         if (!userID) {
             const embed = new Discord.MessageEmbed()
