@@ -40,7 +40,7 @@ module.exports = async (client) => {
     console.log(table.toString())
 
     client.on("messageCreate", async (message) => {
-        const {author,guild} = message;
+        const {author,guild, channel} = message;
 
         // Check if user is a bot
         if (author.bot || !guild) {
