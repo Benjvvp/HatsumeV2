@@ -9,7 +9,7 @@ module.exports = {
         let user = message.mentions.users.first();
 
         let p = await permissionAuth(message, 'KICK_MEMBERS')
-        if(!p.embeds.MessageEmbed) return;
+        if(p === undefined || !p ) return;
         
         if (message.mentions.users.size < 1){
             const embed = new Discord.MessageEmbed()

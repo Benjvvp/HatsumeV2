@@ -6,7 +6,7 @@ module.exports = {
         const Discord = require('discord.js')
         
         let p = permissionAuth(message, 'MANAGE_NICKNAMES')
-        if(!p.embeds.MessageEmbed) return;
+        if(p === undefined || !p ) return;
         
         let user = message.mentions.members.first();
         const newName = args.splice(1).join(' ')

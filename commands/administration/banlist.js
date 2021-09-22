@@ -7,7 +7,7 @@ module.exports = {
         const { MessageEmbed, splitMessage } = require('discord.js')
         
         let p = await permissionAuth(message, 'BAN_MEMBERS')
-        if(!p.embeds.MessageEmbed) return;
+        if(p === undefined || !p ) return;
 
         var blist = await message.guild.bans.fetch();
 

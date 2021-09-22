@@ -7,7 +7,7 @@ module.exports = {
         const Discord = require('discord.js')
         
         let p = permissionAuth(message, 'MANAGE_ROLES')
-        if(!p.embeds.MessageEmbed) return;
+        if(p === undefined || !p ) return;
         
         const user = message.mentions.members.first();
         const rol = message.mentions.roles.first();

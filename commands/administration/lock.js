@@ -6,7 +6,7 @@ module.exports = {
         const Discord = require('discord.js')
         
         let p = await permissionAuth(message, 'MANAGE_CHANNELS')
-        if(!p.embeds.MessageEmbed) return;
+        if(p === undefined || !p ) return;
         
         let alluser = message.guild.roles.cache.find(aus => aus.name === '@everyone');
 
