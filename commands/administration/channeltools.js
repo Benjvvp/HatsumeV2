@@ -8,7 +8,7 @@ module.exports = {
     async run(message, args, client) {
         const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction, ContextMenuInteraction } = require('discord.js')
         let p = await permissionAuth(message, 'MANAGE_CHANNELS')
-        if(p === undefined || !p ) return;
+        if(!p === undefined || p ) return;
 
         /* Principal Embed */
         const row = new MessageActionRow()

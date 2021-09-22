@@ -7,7 +7,7 @@ module.exports = {
         message.delete();
         
         let p = await permissionAuth(message, 'MANAGE_MESSAGES')
-        if(p === undefined || !p ) return;
+        if(!p === undefined || p ) return;
         
         if (!args[0])
             return message.channel.send(`Please Give Me An Amount.`);

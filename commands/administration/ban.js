@@ -8,8 +8,8 @@ module.exports = {
             .setAuthor(message.author.username, message.author.displayAvatarURL())
             .setFooter(message.guild.name, message.guild.iconURL())
 
-        let p = permissionAuth(message, 'BAN_MEMBERS')
-        if(p === undefined || !p ) return;
+        let p = await permissionAuth(message, 'BAN_MEMBERS')
+        if(!p === undefined || p ) return;
 
         //SÃ­ el campo estÃ¡ vacÃ­o no ejecutarÃ¡ la siguiente acciÃ³n.
         if (!args[0]) {

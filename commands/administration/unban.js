@@ -6,7 +6,7 @@ module.exports = {
         const Discord = require('discord.js')
         
         let p = permissionAuth(message, 'BAN_MEMBERS')
-        if(p === undefined || !p ) return;
+        if(!p === undefined || p ) return;
         
         let userID = args[0]
         if (!userID) {
