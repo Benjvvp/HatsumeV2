@@ -28,7 +28,7 @@ module.exports = {
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
-        if(!message.member.voice.channel.full){
+        if(message.member.voice.channel.full){
             const embed = new Discord.MessageEmbed()
                 .setAuthor(`❌ ¡ There's a mistake !`)
                 .setDescription('**I can not join the channel because it is completely full, to join maximizes the capacity of this or made a user.**')
