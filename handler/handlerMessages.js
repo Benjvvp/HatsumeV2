@@ -73,8 +73,11 @@ module.exports = async (client) => {
         const cmd = args.shift().toLowerCase()
         
         if(!client.commands.has(cmd)) return;
-        if(!channel.permissionsFor(message.guild.me).has("EMBED_LINKS" && "USE_EXTERNAL_EMOJIS")){
-            return message.channel.send('**I need \`USE_EXTERNAL_EMOJIS\` AND \`EMBED_LINKS\` permissions to execute most commands, before using me please give me these permissions.**')
+        if(!channel.permissionsFor(message.guild.me).has("USE_EXTERNAL_EMOJIS")){
+            return message.channel.send('**I need \`USE_EXTERNAL_EMOJIS\` permissions to execute most commands, before using me please give me these permissions.**')
+        }
+        if(!channel.permissionsFor(message.guild.me).has("EMBED_LINKS")){
+            return message.channel.send('**I need \`EMBED_LINKS\` permissions to execute most commands, before using me please give me these permissions.**')
         }
         try {
             client.commands.get(cmd).run(message, args, client)
