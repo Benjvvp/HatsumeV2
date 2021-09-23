@@ -1,0 +1,16 @@
+{
+    "embederror":{
+        "title": "❌ ¡ Hay un error !"
+    },
+	"handlerMessages": {
+		"pinged_title": "Oops, ¿me has llamado? ¿Necesitas ayuda?",
+		"pinged_description": "**Hola!!, mi nombre es Hatsume y puedes ver mi lista de comandos con `$$Commands` Gracias.**",
+		"error_command": "Se ha producido un error al intentar ejecutar este comando.",
+		"needescentialspermissions": "**Necesito los permisos `EMBED_LINKS` Y `USE_EXTERNAL_EMOJIS` para ejecutar la mayoría de los comandos, antes de usarlos por favor dame estos permisos.**"
+	},
+	"permissionAuth": {
+		"bot_description": "**Necesito los permisos necesarios para ejecutar este comando. `{permissionString}`**",
+		"user_description": "**No tiene el permiso necesario para ejecutar este comando. `{permissionString}`**"
+	}
+
+}

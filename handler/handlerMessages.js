@@ -40,7 +40,16 @@ module.exports = async (client) => {
     console.log(table.toString())
 
     client.on("messageCreate", async (message) => {
-        const {author,guild, channel} = message;
+        const {author, channel, guild} = message;
+        const servidores = new db.crearDB(`servidores`);
+        guild.lang = 'en';
+        if(servidores.has(`${message.guild.id}.lang`)){
+            guild.lang = await servidores.get(`${message.guild.id}.lang`)
+        }
+        let prefix = "$$"
+        if(servidores.has(`${message.guild.id}.prefix`)){
+            prefix = await servidores.obtener(`${message.guild.id}.prefix`);
+        }
 
         // Check if user is a bot
         if (author.bot || !guild) {
@@ -49,19 +58,14 @@ module.exports = async (client) => {
         
         if (message.mentions.users.get(message.client.user.id)){ 
             const embed = new MessageEmbed()
-                .setTitle(`<:checkinfo:836037745822531664> Oops, you pinged me? Need help?`)
-                .setDescription('**Hello!!, my name is Hatsume and you can see my list of commands with `$$Commands` Thank you.**')
+                .setTitle(client.languages.__({phrase: 'handlerMessages.pinged_title', locale: guild.lang}))
+                .setDescription(client.languages.__({phrase: 'handlerMessages.pinged_description', locale: guild.lang}))
                 .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cVBcTYb7p02Dg-NJIWtPBowdG7w82H1DFg&usqp=CAU")
                 .setColor("AQUA")
             message.channel.send({embeds: [embed]})
         }
-
-        const servidores = new db.crearDB(`servidores`);
-        let prefix = "$$"
-        if (servidores.tiene(message.guild.id) == true){
-            prefix = await servidores.obtener(`${message.guild.id}`);
-        }
         
+
         // Ignore messages without prefix
         if (!message.content.startsWith(prefix)) return
 
@@ -75,8 +79,8 @@ module.exports = async (client) => {
         if(!client.commands.has(cmd)) return;
         if(!channel.permissionsFor(message.guild.me).has("EMBED_LINKS" && "USE_EXTERNAL_EMOJIS")){
             const embed = new MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription(`**I need \`EMBED_LINKS AND USE_EXTERNAL_EMOJIS\` permissions to execute most commands, before using me please give me these permissions.**`)
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: guild.lang}))
+                .setDescription(client.languages.__({phrase: 'handlerMessages.needescentialspermissions', locale: guild.lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")
             return message.channel.send({embeds: [embed]});
@@ -85,7 +89,7 @@ module.exports = async (client) => {
             client.commands.get(cmd).run(message, args, client)
         } catch (error) {
             console.error(error)
-            message.reply("There was an error trying to execute this command!")
+            message.reply(client.languages.__({phrase: 'handlerMessages.errorcommand', locale: guild.lang}))
         }
     })
 }

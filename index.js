@@ -3,6 +3,7 @@ const intents = new Intents(32767);
 const client = new Client({ intents });
 const chalk = require('chalk');
 const fs = require('fs');
+
 /* Insert .ENV File */
 require('dotenv').config()
 /* Event Handler */
@@ -17,8 +18,13 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
+
+//Initialize multi languages
+const i18n = require('./utils/i18n');
+i18n(client);
 //Initialize Music Manager
 const { Player } = require("discord-music-player");
+
 const player = new Player(client, {
     leaveOnEmpty: true,
 	volume: 100,
