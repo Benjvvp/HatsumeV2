@@ -53,7 +53,10 @@ module.exports = {
         let permissions = '';
         let perms = m.permissions.toArray();
         if(perms.includes('ADMINISTRATOR')) permissions = 'ADMINISTRATOR';
-        else perms.join(', ')
+        else{
+            perms.join(' , ');
+            permissions = perms
+        }
 
         const embed = new Discord.MessageEmbed() 
             .setAuthor(`Information from ${user.user.username}`)
