@@ -9,7 +9,7 @@ module.exports = {
 			console.log(data)
 		})
 		console.log(chalk.bold.green(`Logged in as ${client.user.tag}!`));
-        client.user.setActivity('Hatsume | $$Help', {
+        client.user.setActivity('Hatsume | $$Help - NEW MULTI LANGUAGE !!', {
             type: 'PLAYING'
         }) //PLAYING, STREAMING, LISTENING, WATCHING, CUSTOM_STATUS
         console.log(chalk.greenBright(`Activity set to: WATCHING ${client.presence.activities[0].name}`))
