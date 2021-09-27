@@ -27,10 +27,12 @@ const { Player } = require("discord-music-player");
 
 const player = new Player(client, {
     leaveOnEmpty: true,
+	leaveOnStop: false,
 	volume: 100,
 	quality: 'high',
 	leaveOnEnd: false,
-	deafenOnJoin: true // This options are optional.
+	deafenOnJoin: true, // This options are optional.
+	timeout: 5
 });
 client.player = player;
 //Initialize Comamnd Manager
