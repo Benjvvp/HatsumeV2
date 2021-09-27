@@ -2,7 +2,7 @@ const permissionAuth = require('../../handler/permissionAuth');
 
 module.exports = {
     name: "unlock",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js')
         
         let p = permissionAuth(message, 'MANAGE_CHANNELS')
@@ -20,7 +20,7 @@ module.exports = {
         }).catch(console.error())
 
         const embedLock = new Discord.MessageEmbed()
-        .setTitle('<a:checkgif:835970348687556645> `|` The channel has been unblocked and anyone can now write to.')
+        .setTitle(client.languages.__({phrase: 'unlock.sucess', locale: lang}))
         .setColor('GREEN');
         message.channel.send({embeds: [embedLock]})
     }

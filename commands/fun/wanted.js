@@ -1,6 +1,6 @@
 module.exports = {
     name: "wanted",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
 
         const canva = require("canvacord");
         const Discord = require("discord.js");

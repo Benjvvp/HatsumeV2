@@ -1,12 +1,12 @@
 module.exports = {
     name: "generate-password",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js')
     
         if(!args[0]){
             const embed = new Discord.MessageEmbed()
-            .setAuthor(`❌ ¡ There's a mistake !`)
-            .setDescription('**Please enter the length of the password. `Example: $$generate-password 10`**')
+            .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+            .setDescription(client.languages.__({phrase: 'generatepassword.enterlength', locale: lang}))
             .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
             .setColor("RED")
             return await message.channel.send({embeds: [embed]})
@@ -25,12 +25,12 @@ module.exports = {
             password += (abecedario[numeroAleatorio]);
         }
         const embed = new Discord.MessageEmbed()
-        .setTitle('<a:giphyverifid:835970692930863185> Password generated correctly')
-        .setDescription('**Your password has been successfully generated and has been sent by `MD`.**')
+        .setTitle(client.languages.__({phrase: 'generatepassword.sucessgenerate', locale: lang}))
+        .setDescription(client.languages.__({phrase: 'generatepassword.description', locale: lang}))
         .setTimestamp()
         .setColor("#42bf91")
         message.channel.send({embeds: [embed]});
-        message.author.send(`**Your secure password is:** ||${password}||`)
+        message.author.send(client.languages.__mf({phrase: 'generatepassword.mdtext', locale: lang}, {password: password}))
         
     }
 }

@@ -1,33 +1,32 @@
 const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction } = require('discord.js')
-module.exports = async (message, msg) => {
-    const {guild} = message;
+module.exports = async (message, msg, lang, client) => {
 
     const Discord = require('discord.js');
     const ms = require('ms');
 
     /* Delete Channel DOM  */
     const embedSlowChannel = new MessageEmbed()
-        .setTitle(client.languages.__({phrase: 'slowchannel.embedslowchannel_title', locale: guild.lang}))
+        .setTitle(client.languages.__({phrase: 'slowchannel.embedslowchannel_title', locale: lang}))
         .setColor('RED')
     const embedSlowON = new MessageEmbed()
-        .setTitle(client.languages.__({phrase: 'slowchannel.embedSlowON_title', locale: guild.lang}))
+        .setTitle(client.languages.__({phrase: 'slowchannel.embedSlowON_title', locale: lang}))
         .setColor('RED')
     const rowSlowON = new MessageActionRow()
     .addComponents(
         new MessageButton()
         .setCustomId('slowmodecancel')
-        .setLabel(client.languages.__({phrase: 'slowchannel.cancel', locale: guild.lang}))
+        .setLabel(client.languages.__({phrase: 'slowchannel.cancel', locale: lang}))
         .setStyle('DANGER'),
     )
     const rowSlowChannel = new MessageActionRow()
         .addComponents(
             new MessageButton()
                 .setCustomId('slowmodeon')
-                .setLabel(client.languages.__({phrase: 'slowchannel.on', locale: guild.lang}))
+                .setLabel(client.languages.__({phrase: 'slowchannel.on', locale: lang}))
                 .setStyle('SUCCESS'),
             new MessageButton()
                 .setCustomId('slowmodeoff')
-                .setLabel(client.languages.__({phrase: 'slowchannel.off', locale: guild.lang}))
+                .setLabel(client.languages.__({phrase: 'slowchannel.off', locale: lang}))
                 .setStyle('DANGER'),
             )
 
@@ -38,7 +37,7 @@ module.exports = async (message, msg) => {
                 if (i.customId === 'slowmodeoff') {
                     message.channel.setRateLimitPerUser(0)
                     const embed = new MessageEmbed()
-                        .setTitle(client.languages.__({phrase: 'slowchannel.setoff', locale: guild.lang}))
+                        .setTitle(client.languages.__({phrase: 'slowchannel.setoff', locale: lang}))
                         .setColor('GREEN');
                     message.channel.send({embeds: [embed]})
                     msg.delete()
@@ -65,15 +64,15 @@ module.exports = async (message, msg) => {
                         if (!toSecond || toSecond == undefined) {
                             msg.delete()
                             const embed = new Discord.MessageEmbed()
-                                .setAuthor(`❌ ¡ There's a mistake !`)
-                                .setDescription(client.languages.__({phrase: 'slowchannel.validformat', locale: guild.lang}))
+                                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                                .setDescription(client.languages.__({phrase: 'slowchannel.validformat', locale: lang}))
                                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                                 .setColor("RED")
                             return message.channel.send({embeds: [embed]})
                         }
                         await message.channel.setRateLimitPerUser(toSecond);
                         const embed = new MessageEmbed()
-                            .setTitle(client.languages.__({phrase: 'slowchannel.seton', locale: guild.lang}))
+                            .setTitle(client.languages.__({phrase: 'slowchannel.seton', locale: lang}))
                             .setColor('GREEN');
                         message.channel.send({embeds: [embed]})
                     })  
@@ -81,8 +80,8 @@ module.exports = async (message, msg) => {
                         if(collected.size == 0){
                             msg.delete()
                             const embed = new MessageEmbed()
-                                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: guild.lang}))
-                                .setDescription(client.languages.__({phrase: 'slowchannel.expiredinteraction', locale: guild.lang}))
+                                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                                .setDescription(client.languages.__({phrase: 'slowchannel.expiredinteraction', locale: lang}))
                                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                                 .setColor("RED")
                             return message.channel.send({embeds: [embed]})

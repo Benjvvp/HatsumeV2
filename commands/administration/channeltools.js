@@ -5,7 +5,7 @@ const slowchannel = require('./utilHandler/slowchannel');
 
 module.exports = {
     name: "channeltools",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction, ContextMenuInteraction } = require('discord.js')
         let p = await permissionAuth(message, 'MANAGE_CHANNELS')
         if(!p === undefined || p ) return;
@@ -15,21 +15,21 @@ module.exports = {
         .addComponents(
             new MessageButton()
                 .setCustomId('deletechannel')
-                .setLabel('Delete Channel')
+                .setLabel(client.languages.__({phrase: 'channeltools.deletechannel', locale: lang}))
                 .setStyle('DANGER'),
             new MessageButton()
                 .setCustomId('renamechannel')
-                .setLabel('Rename Channel')
+                .setLabel(client.languages.__({phrase: 'channeltools.renamechannel', locale: lang}))
                 .setStyle('PRIMARY'),
             new MessageButton()
                 .setCustomId('slowmode')
-                .setLabel('Slow Mode')
+                .setLabel(client.languages.__({phrase: 'channeltools.slowmode', locale: lang}))
                 .setStyle('SUCCESS'),
         )
         const embed = new MessageEmbed()
             .setColor('GREEN')
             .setTitle('Channel Tools - Hatsume')
-            .setDescription('You have invoked the Channel Tools command, this command will show you the options you have below to choose one just click and read what you will get later, thank you.\n**You have 10 seconds to choose.**')
+            .setDescription(client.languages.__({phrase: 'channeltools.embeddescription', locale: lang}))
             .setThumbnail(client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
         
         message.channel.send({embeds: [embed], components: [row]}).then(msg => {
@@ -39,15 +39,15 @@ module.exports = {
             collector.on('collect', i => {
                 if(i.user.id === message.author.id){
                     if (i.customId === 'deletechannel') {
-                        deletechannel(message, msg);
+                        deletechannel(message, msg, lang, client);
                         i.deferUpdate()
                     }
                     if (i.customId === 'renamechannel') {
-                        renamechannel(message, msg)
+                        renamechannel(message, msg, lang, client)
                         i.deferUpdate()
                     }
                     if (i.customId === 'slowmode') {
-                        slowchannel(message, msg)
+                        slowchannel(message, msg, lang, client)
                         i.deferUpdate()
                     }
                 }

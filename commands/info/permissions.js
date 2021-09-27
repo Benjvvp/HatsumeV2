@@ -1,9 +1,9 @@
 module.exports = {
     name: "permissions",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js');
 
-        let adminsitrator = false;
+        let administrator = false;
         let kick = false;
         let ban = false;
         let managechannels = false;
@@ -15,7 +15,7 @@ module.exports = {
         let movemembers = false;
         let mentioneveryone = false;
 
-        if (message.member.permissions.has("ADMINISTRATOR")) adminsitrator = true;
+        if (message.member.permissions.has("ADMINISTRATOR")) administrator = true;
         if (message.member.permissions.has("KICK_MEMBERS")) kick = true;
         if (message.member.permissions.has("BAN_MEMBERS")) ban = true;
         if (message.member.permissions.has("MANAGE_CHANNELS")) managechannels = true;
@@ -29,10 +29,10 @@ module.exports = {
 
 
         const embed = new Discord.MessageEmbed()
-        .setTitle('Permission Check')
+        .setTitle(client.languages.__({phrase: 'permissions.title', locale: lang}))
         .setThumbnail(message.client.displayAvatarURL)
         .setDescription(`**${message.author}**\n\n`)
-        .addField('`Administrator`', `${adminsitrator ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
+        .addField('`Administrator`', `${administrator ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Kick Members`', `${kick ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Ban Members`', `${ban ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Manage Channels`', `${managechannels ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
@@ -43,7 +43,7 @@ module.exports = {
         .addField('`View Audit Logs`', `${viewauditlogs ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Move Members`', `${movemembers ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Mention Everyone`', `${mentioneveryone ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
-        .setFooter('Permissions for ' + message.member.displayName)
+        .setFooter(client.languages.__mf({phrase: 'permissions.footer', locale: lang}, {user: user}))
         .setColor('BLUE')
         message.channel.send({embeds: [embed]})
     }

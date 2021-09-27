@@ -1,14 +1,14 @@
 module.exports = {
     name: "djsdoc",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const fetch = require('node-fetch')
         const {MessageEmbed} = require('discord.js');
 
         if(!args.join(' ')){
             const embed = new MessageEmbed()
-              .setAuthor(`❌ ¡ There's a mistake !`)
+              .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
               .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
-              .setDescription("**Enter what you want to search for, you can also set the branch as an option.. `Usage: $$djs (Branch) [Search]`**")
+              .setDescription(client.languages.__({phrase: 'djsdoc.entersearch', locale: lang}))
               .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
@@ -28,9 +28,9 @@ module.exports = {
         await message.channel.send({ embeds: [new MessageEmbed(res)] });
         }).catch((err) => {
             const embed = new MessageEmbed()
-              .setAuthor(`❌ ¡ There's a mistake !`)
+              .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
               .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
-              .setDescription(`**An error occurred while consulting the documentation: ${err.message}**`)
+              .setDescription(client.languages.__mf({phrase: 'djsdoc.cases', locale: lang}, {err: err.message}))
               .setColor("RED")
             return message.channel.send({embeds: [embed]})
         });

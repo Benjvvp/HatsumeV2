@@ -2,9 +2,9 @@ const permissionAuth = require('../../handler/permissionAuth');
 
 module.exports = {
     name: "lock",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js')
-        
+
         let p = await permissionAuth(message, 'MANAGE_CHANNELS')
         if(!p === undefined || p ) return;
         
@@ -20,7 +20,7 @@ module.exports = {
         }).catch(console.error())
 
         const embedLock = new Discord.MessageEmbed()
-        .setTitle('<a:checkgif:835970348687556645> `|` The channel has been blocked.')
+        .setTitle(client.languages.__({phrase: 'lock.sucessfullocked', locale: lang}))
         .setColor('GREEN');
         message.channel.send({embeds: [embedLock]})
     }

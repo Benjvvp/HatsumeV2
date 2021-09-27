@@ -2,8 +2,7 @@ const permissionAuth = require('../../handler/permissionAuth');
 
 module.exports = {
     name: "kick",
-    async run(message, args, client) {
-
+    async run(message, args, client, lang) {
         const Discord = require('discord.js')
 
         let user = message.mentions.users.first();
@@ -13,19 +12,19 @@ module.exports = {
         
         if (message.mentions.users.size < 1){
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**You need to mention the person you want to kick.**')
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                .setDescription(client.languages.__({phrase: 'kick.needmention', locale: lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
 
-        let razon = args[0] ? args.slice(1).join(" ") : "Reason unspecified"
+        let razon = args[0] ? args.slice(1).join(" ") : client.languages.__({phrase: 'kick.reasonunspecified', locale: guild.lang});
 
         if (message.member.roles.highest.comparePositionTo(member.roles.highest) <= 0) {
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**You cannot kick a user with higher or equal rank.**')
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                .setDescription(client.languages.__({phrase: 'kick.higherorequal', locale: lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
@@ -33,8 +32,8 @@ module.exports = {
 
         if (!message.guild.member(user).kickable){
             const embed = new Discord.MessageEmbed()
-                    .setAuthor(`❌ ¡ There's a mistake !`)
-                    .setDescription('**I cannot ban this user.**')
+                    .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                    .setDescription(client.languages.__({phrase: 'kick.cannotkick', locale: lang}))
                     .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                     .setColor("RED")
                 return message.channel.send({embeds: [embed]})
@@ -46,9 +45,9 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setAuthor(message.author.username, message.author.displayAvatarURL())
         .setThumbnail(!!member.user ? member.user.displayAvatarURL() : member.displayAvatarURL())
-        .setTitle('¡Successful kick!')
-        .addField(`> Kicked User`, user.username)
-        .addField('> Reason', razon)
+        .setTitle(client.languages.__({phrase: 'kick.successfultitle', locale: lang}))
+        .addField(client.languages.__({phrase: 'kick.successfuluser', locale: lang}), user.username)
+        .addField(client.languages.__({phrase: 'kick.sucessfulreason', locale: lang}), razon)
         .setTimestamp() 
         .setColor('AQUA')
         message.channel.send({embeds: [embed]});

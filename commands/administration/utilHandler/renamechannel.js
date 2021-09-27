@@ -1,9 +1,8 @@
 const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction } = require('discord.js')
-module.exports = async (message, msg) => {
-    const {guild} = message;
+module.exports = async (message, msg, lang, client) => {
     /* Delete Channel DOM  */
     const embedRenameChannel = new MessageEmbed()
-        .setTitle(client.languages.__({phrase: 'renamechannel.typechannel', locale: guild.lang}))
+        .setTitle(client.languages.__({phrase: 'renamechannel.typechannel', locale: lang}))
         .setColor('RED')
 
 
@@ -11,7 +10,7 @@ module.exports = async (message, msg) => {
         .addComponents(
             new MessageButton()
                 .setCustomId('renamechannelcancel')
-                .setLabel(client.languages.__({phrase: 'renamechannel.cancel', locale: guild.lang}))
+                .setLabel(client.languages.__({phrase: 'renamechannel.cancel', locale: lang}))
                 .setStyle('DANGER'),
             )
 
@@ -34,7 +33,7 @@ module.exports = async (message, msg) => {
     newChannelName.on('collect', m => {
         message.channel.setName(m.content)
         const embed = new MessageEmbed()
-            .setTitle(client.languages.__({phrase: 'renamechannel.sucessrename', locale: guild.lang}))
+            .setTitle(client.languages.__({phrase: 'renamechannel.sucessrename', locale: lang}))
             .setColor('GREEN');
         message.channel.send({embeds: [embed]})
     })  
@@ -42,7 +41,7 @@ module.exports = async (message, msg) => {
         if(collected.size == 0){
             msg.delete()
             const embed = new MessageEmbed()
-                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: guild.lang}))
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
                 .setDescription(client.languages.__({phrase: 'renamechannel.endcollectorerror', locale: guild.lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")

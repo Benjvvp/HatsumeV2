@@ -1,6 +1,6 @@
 module.exports = {
     name: "coinflip",
-    async run(message, args, client){
+    async run(message, args, client, lang){
 
         const Discord = require('discord.js');
         const coin = 
@@ -8,7 +8,7 @@ module.exports = {
         'https://cdn.discordapp.com/attachments/315914386944557056/369580737919451137/sello.png'];//definimos las imagenes de la moneda como una constante.
         
         const embed = new Discord.MessageEmbed() //creamos el embed
-        .setAuthor(message.author.username+" Got:", message.author.avatarURL)
+        .setAuthor(message.author.username+ client.languages.__({phrase: 'coinflip.got', locale: lang}), message.author.avatarURL)
         .setImage(coin[Math.floor(coin.length * Math.random())])//usamos mathRandom para que la imagen salga de una manera random al usar el comando.
         .setColor("RANDOM")//aqui yo puse para que salga un color random,pero pueden poner el que quieran uwu.
         

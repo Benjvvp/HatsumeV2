@@ -1,7 +1,7 @@
 const { Util, Collection, Formatters } = require("discord.js");
 module.exports = {
     name: "structure",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         if (!message.guild)
         return message.channel.send("The only channel I can see here is this.");
       let text = "";
@@ -43,7 +43,7 @@ module.exports = {
       const split = Util.splitMessage(text);
       for (const i in split) {
         const embed = {
-            title: 'Channel structure of ' + message.guild.name,
+            title: client.languages.__mf({phrase: 'structure.title', locale: lang}, {guild: message.guild.name}),
             description: `\`\`\`${split[i]}\`\`\``,
             color: 'AQUA'
         }

@@ -1,22 +1,26 @@
 module.exports = {
     name: "userinfo",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js');
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member; // Definimos usuario, si mencionamos a alguien se obtendra su informacion, si no mencionamos a nadie se obtendra la informacion de "Nosotros"
         let status;
-        switch (user.presence.status) {
-            case "online":
-                status = "Online";
-                break;
-            case "dnd":
-                status = "Don't disturb";
-                break;
-            case "idle":// En el caso idle..
-                status = "Absent";
-                break;
-            case "offline":
-                status = "Disconnected";
-                break;
+        if(user.presence === null){
+            status = client.languages.__({phrase: 'userinfo.offline', locale: lang})
+        }else{
+            switch (user.presence.status) {
+                case "online":
+                    status = client.languages.__({phrase: 'userinfo.online', locale: lang});
+                    break;
+                case "dnd":
+                    status = client.languages.__({phrase: 'userinfo.dnd', locale: lang});
+                    break;
+                case "idle":// En el caso idle..
+                    status = client.languages.__({phrase: 'userinfo.idle', locale: lang});
+                    break;
+                case "offline":
+                    status = client.languages.__({phrase: 'userinfo.offline', locale: lang});
+                    break;
+            }
         }
         let badges1 = {
             'EARLY_SUPPORTER': '<:earlysupport:889929381340938270>',
@@ -33,21 +37,22 @@ module.exports = {
           }
         /* CLient STATUS */
         let clientStatus = "";
-        if (user.presence.clientStatus) {
-            if (user.presence.clientStatus["web"]) {
-                clientStatus += 'Web'
+        if(user.presence === null){
+            clientStatus = status;
+        } else{
+            if (user.presence.clientStatus) {
+                if (user.presence.clientStatus["web"]) {
+                    clientStatus += client.languages.__({phrase: 'userinfo.Web', locale: lang});
+                }
+                else if (user.presence.clientStatus["mobile"]) {
+                    clientStatus += client.languages.__({phrase: 'userinfo.Mobile', locale: lang});
+                }
+                else if (user.presence.clientStatus["desktop"]) {
+                    clientStatus += client.languages.__({phrase: 'userinfo.Desktop', locale: lang});
+                }
             }
-            else if (user.presence.clientStatus["mobile"]) {
-                clientStatus += 'Mobile';
-            }
-            else if (user.presence.clientStatus["desktop"]) {
-                clientStatus += 'Desktop';
-            }
-        } else {
-            clientStatus = status[user.presence.status];
         }
-        if (!clientStatus)
-        clientStatus = "Offline/Invisible";
+        
         /* PERMISSION CALCULATOR */
         let m = message.guild.members.cache.get(user.id) || await message.guild.members.fetch(user.id, { cache: true });
         let permissions = '';
@@ -59,28 +64,11 @@ module.exports = {
         }
 
         const embed = new Discord.MessageEmbed() 
-            .setAuthor(`Information from ${user.user.username}`)
-            .addField('**Information on the server**', `
-            > <:bluepoint:889915814684278784> **Highest role:** ${user.roles.highest}
-            > <:bluepoint:889915814684278784> **Roles:** ${user.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `${roles}`).join(" **|** ") || "No Roles"}
-            > <:bluepoint:889915814684278784> **NickName:** ${user.nickname ? user.nickname : 'None'}
-            > <:bluepoint:889915814684278784> **Boost this server:** ${user.premiumSince ? `Yes` : "No"}`, false)
-            .addField('**States**', `
-            > <:bluepoint:889915814684278784> **Activity:** ${user.presence.game != null ? user.presence.game.name : "Nothing"}
-            > <:bluepoint:889915814684278784> **State:** ${status}
-            > <:bluepoint:889915814684278784> **Device:** ${clientStatus}
-            `, false)
-            .addField('**User information**', `
-            > <:bluepoint:889915814684278784> **Registered:** ${user.user.createdAt.toLocaleDateString("es-pe")}
-            > <:bluepoint:889915814684278784> **Badges:** ${user.user.flags.toArray().length ? user.user.flags.toArray().map(badge => badges1[badge]).join(' ') : "It does not have"}
-            > <:bluepoint:889915814684278784> **Avatar:** ${`[Download](${user.user.displayAvatarURL({
-                format: 'png',
-                dynamic: true
-            })})`}
-            > <:bluepoint:889915814684278784> **Name:** ${user.user.username}
-            > <:bluepoint:889915814684278784> **ID:** ${user.id}
-            `, false)
-            .addField('**Permission**', `\n
+            .setAuthor(client.languages.__mf({phrase: 'userinfo.author', locale: lang}, {user: user.user.id}))
+            .addField(client.languages.__({phrase: 'userinfo.informationi', locale: lang}), client.languages.__mf({phrase: 'userinfo.informationid', locale: lang}, {highrol: user.roles.highest,roles: user.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `${roles}`).join(" **|** ") || "No Roles", nickname: user.nickname ? user.nickname : 'None', boost: user.premiumSince ? `Yes` : "No"}), false)
+            .addField(client.languages.__({phrase: 'userinfo.statesi', locale: lang}), client.languages.__mf({phrase: 'userinfo.statesid', locale: lang}, {activity: user.presence != null ? user.presence.game.name : "Nothing", status: status, clientStatus: clientStatus}), false)
+            .addField(client.languages.__({phrase: 'userinfo.useri', locale: lang}), client.languages.__mf({phrase: 'userinfo.userid', locale: lang}, {userregistered: user.user.createdAt.toLocaleDateString("es-pe"), userbadges: user.user.flags.toArray().length ? user.user.flags.toArray().map(badge => badges1[badge]).join(' ') : "It does not have", useravatar: `[Download](${user.user.displayAvatarURL({format: 'png',dynamic: true})})`,username: user.user.username, userid: user.id}), false)
+            .addField(client.languages.__({phrase: 'userinfo.permi', locale: lang}), `\n
             \`\`\`${permissions}\`\`\`
             
             `)

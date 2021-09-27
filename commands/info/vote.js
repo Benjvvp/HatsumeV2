@@ -1,12 +1,12 @@
 module.exports = {
     name: "vote",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
         const Discord = require('discord.js');
         
         const embed = new Discord.MessageEmbed()
-        .setTitle('¡Vote for Hatsume!')
-        .setDescription('**Top GG - https://top.gg/bot/874827585417248779** (Awaiting verification)\n**Discord Bot List - https://discordbotlist.com/bots/hatsume/upvote**')
-        .setFooter('Thanks for vote.')
+        .setTitle(client.languages.__({phrase: 'vote.title', locale: lang}))
+        .setDescription(client.languages.__({phrase: 'vote.description', locale: lang}))
+        .setFooter(client.languages.__({phrase: 'vote.footer', locale: lang}))
         .setColor('BLUE')
         message.channel.send({embeds: [embed]})
     }

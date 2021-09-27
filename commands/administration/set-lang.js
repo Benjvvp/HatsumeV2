@@ -1,40 +1,36 @@
 module.exports = {
     name: "set-lang",
-    async run(message, args, client) {
-
+    async run(message, args, client, lang) {
         const Discord = require('discord.js');
 
         const db = require('megadb');
         const servidores = new db.crearDB(`servidores`);
 
-        let lang = args[0].toLowerCase();
+        let langt = args[0];
 
         if (!message.member.permissions.has("ADMINISTRATOR")) {
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**You do not have the necessary permission to execute this command. `ADMINISTRATOR`**')
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                .setDescription(client.languages.__({phrase: 'setlang.hasadministrator', locale: lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")
             return await message.channel.send({embeds: [embed]})
         }
 
-        if (!lang) {
+        if (!langt) {
             const embed = new Discord.MessageEmbed()
-                .setAuthor(`❌ ¡ There's a mistake !`)
-                .setDescription('**You need to enter the `new lang`\n Supported: Spanish - English**')
+                .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                .setDescription(client.languages.__({phrase: 'setlang.enterlang', locale: lang}))
                 .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
-
-        if(!lang == 'english' || !lang == 'spanish') return message.channel.send('**Lang supported: Spanish - English**')
-        if(lang == "english"){
-            message.channel.send(`Lang changed correctly to \`english\``)
-            servidores.delete(`${message.guild.id}.lang`)
-            return;
-        }
-        servidores.set(`${message.guild.id}.lang`, args[0]).then(
-            message.channel.send(`Lang changed correctly to \`${lang}\``)
+        langt = langt.toLowerCase();
+        if(!langt == 'english' || !langt == 'spanish') return message.channel.send(client.languages.__({phrase: 'setlang.langusupp', locale: lang}))
+        if(langt === 'english') langt = 'en';
+        if(langt === 'spanish') langt = 'es';
+        servidores.set(`${message.guild.id}.lang`, langt).then(
+            message.channel.send(client.languages.__mf({phrase: 'setlang.sucess', locale: lang}, {lang: lang}))
         );
     }
 } 

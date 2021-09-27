@@ -41,10 +41,13 @@ module.exports = async (client) => {
 
     client.on("messageCreate", async (message) => {
         const {author, channel, guild} = message;
+        let lang = guild.lang;
+
         const servidores = new db.crearDB(`servidores`);
-        guild.lang = 'en';
+        lang = 'en';
         if(servidores.has(`${message.guild.id}.lang`)){
             guild.lang = await servidores.get(`${message.guild.id}.lang`)
+            lang = guild.lang
         }
         let prefix = "$$"
         if(servidores.has(`${message.guild.id}.prefix`)){
@@ -58,8 +61,8 @@ module.exports = async (client) => {
         
         if (message.mentions.users.get(message.client.user.id)){ 
             const embed = new MessageEmbed()
-                .setTitle(client.languages.__({phrase: 'handlerMessages.pinged_title', locale: guild.lang}))
-                .setDescription(client.languages.__({phrase: 'handlerMessages.pinged_description', locale: guild.lang}))
+                .setTitle(client.languages.__({phrase: 'handlerMessages.pinged_title', locale: lang}))
+                .setDescription(client.languages.__({phrase: 'handlerMessages.pinged_description', locale: lang}))
                 .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cVBcTYb7p02Dg-NJIWtPBowdG7w82H1DFg&usqp=CAU")
                 .setColor("AQUA")
             message.channel.send({embeds: [embed]})
@@ -84,10 +87,10 @@ module.exports = async (client) => {
             return message.channel.send('**I need \`EMBED_LINKS\` permissions to execute most commands, before using me please give me these permissions.**')
         }
         try {
-            client.commands.get(cmd).run(message, args, client)
+            client.commands.get(cmd).run(message, args, client, lang)
         } catch (error) {
             console.error(error)
-            message.reply(client.languages.__({phrase: 'handlerMessages.errorcommand', locale: guild.lang}))
+            message.reply(client.languages.__({phrase: 'handlerMessages.errorcommand', locale: lang}))
         }
     })
 }

@@ -1,6 +1,6 @@
 module.exports = {
     name: "weather",
-    run(message, args, client) {
+    run(message, args, client, lang) {
 
         const Discord = require('discord.js');
 
@@ -11,8 +11,8 @@ module.exports = {
             result) {
             if (args.length < 1) {
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(`❌ ¡ There's a mistake !`)
-                    .setDescription('**Please `enter a location`.**')
+                    .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                    .setDescription(client.languages.__({phrase: 'weather.enterlocation', locale: lang}))
                     .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                     .setColor("RED")
                 return message.channel.send({embeds: [embed]})
@@ -25,8 +25,8 @@ module.exports = {
                 location = result[0].location;
             } catch(e){
                 const embed = new Discord.MessageEmbed()
-                    .setAuthor(`❌ ¡ There's a mistake !`)
-                    .setDescription('**An error has occurred with the location please enter a `valid location`.**')
+                    .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
+                    .setDescription(client.languages.__({phrase: 'weather.validlocation', locale: lang}))
                     .setThumbnail("https://2.bp.blogspot.com/-CPO_z4zNSnc/WsY667p0JgI/AAAAAAAAYRs/ubTMJD5ToyImbR-o4EiK18gBypYXd0RiwCLcBGAs/s1600/Mercenary%2BGarage%2BError%2BGIF.gif")
                     .setColor("RED")
                 return message.channel.send({embeds: [embed]})
@@ -35,19 +35,19 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
 
                 .setDescription("`" + current.skytext + "`")
-                .setAuthor(`Weather Status in ${current.observationpoint}`) //En el lugar que pusiste
+                .setAuthor(client.languages.__mf({phrase: 'weather.embedauthor', locale: lang}, {currentcity: current.observationpoint}))
                 .setThumbnail(current.imageUrl) //Cambiara el Thumbnail depende del clima
                 .setColor("RANDOM")
-                .addField("Time Zone", `GMT${location.timezone}`, true) //Zona horaria
+                .addField(client.languages.__({phrase: 'weather.timezone', locale: lang}), `GMT${location.timezone}`, true) //Zona horaria
                 .addField(
-                    "Temperature",
+                    client.languages.__({phrase: 'weather.temperature', locale: lang}),
                     `${current.temperature} Grados ${location.degreetype}`,
                     true
                 ) //La temperatura en celsius
-                .addField("Wind", current.windspeed, true) //La velocidad del viento
-                .addField("Humidity", `${current.humidity}%`, true) //humedad ._.
-                .addField("Date", current.day + " " + current.date, true) //Fecha
-                .setFooter("Interesting weather out there, isn't it?") //Si quieren ponganle mas cosas, no hace falta el footer
+                .addField(client.languages.__({phrase: 'weather.wind', locale: lang}), current.windspeed, true) //La velocidad del viento
+                .addField(client.languages.__({phrase: 'weather.humidity', locale: lang}), `${current.humidity}%`, true) //humedad ._.
+                .addField(client.languages.__({phrase: 'weather.date', locale: lang}), current.day + " " + current.date, true) //Fecha
+                .setFooter(client.languages.__({phrase: 'weather.embedfooter', locale: lang})) //Si quieren ponganle mas cosas, no hace falta el footer
                 .setTimestamp(new Date()) //agregan si quieren la hora a la que se pidio el clime
 
             message.channel.send({embeds: [embed]}); //Al final enviamos el embed

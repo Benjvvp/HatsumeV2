@@ -1,6 +1,6 @@
 module.exports = {
     name: "covid",
-    async run(message, args, client) {
+    async run(message, args, client, lang) {
 
         const Discord = require('discord.js');
 
@@ -10,14 +10,14 @@ module.exports = {
         //Hacemos un embed para indicar los datos
         let covid = new Discord.MessageEmbed()
             .setTitle('Covid-19 Information')
-            .addField('`🤕` Cases', data.cases.toLocaleString(), true)
-            .addField('`🤯` Cases today', data.todayCases.toLocaleString(), true)
-            .addField('`💀` Deaths', data.deaths.toLocaleString(), true)
-            .addField('`👻` Deaths today', data.todayDeaths.toLocaleString(), true)
-            .addField('`🥴` Critical Situations', data.critical.toLocaleString(), true)
-            .addField('`😆` Recovered', data.recovered.toLocaleString(), true)
-            .addField('`😷` Odds in a million', data.testsPerOneMillion.toLocaleString(), true)
-            .addField('`🚫` Countries affected', data.affectedCountries.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.cases', locale: lang}), data.cases.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.casestoday', locale: lang}), data.todayCases.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.deaths', locale: lang}), data.deaths.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.deathstoday', locale: lang}), data.todayDeaths.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.criticalsituations', locale: lang}), data.critical.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.recovered', locale: lang}), data.recovered.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.oddsinamillion', locale: lang}), data.testsPerOneMillion.toLocaleString(), true)
+            .addField(client.languages.__({phrase: 'covid.countriesaffected', locale: lang}), data.affectedCountries.toLocaleString(), true)
             .setColor('#FF0000')
         message.channel.send({embeds: [covid]})
     }

@@ -1,7 +1,7 @@
 {
-    "embederror":{
-        "title": "❌ ¡ There's a mistake !"
-    },
+	"embederror": {
+		"title": "❌ ¡ There's a mistake !"
+	},
 	"handlerMessages": {
 		"pinged_title": "Oops, you pinged me? Need help?",
 		"pinged_description": "**Hello!!, my name is Hatsume and you can see my list of commands with `$$Commands` Thank you.**",
@@ -33,5 +33,337 @@
 		"seton": "<a:checkgif:835970348687556645> `|` Slow mode set correctly.",
 		"validformat": "**Please insert a `valid format`, try again.**",
 		"expiredinteraction": "**You did not enter the name and the time has expired, to retry enter the command again.**"
+	},
+	"addrole": {
+		"needmention": "**You need to mention `one person`.**",
+		"needmentionrole": "**You need to mention a role.**",
+		"rolenoeditable": "**The role you want to add is higher than mine.**",
+		"highrole": "**The role you want to add is higher than yours.**",
+		"hasrole": "**This user already has the role.**",
+		"correctlyadd": "<a:checkgif:835970348687556645> `|` Role correctly added to {user}."
+	},
+	"ban": {
+		"needmention": "**You need to mention `one person`. __It can be anyone but you.__**",
+		"needuser": "**You need to mention `one person`. __It can be anyone but you.__**",
+		"higherorequal": "**You cannot ban a user with higher or equal rank.**",
+		"cannotban": "**I cannot ban this user.**",
+		"reasonunspecified": "Reason unspecified",
+		"successfultitle": "¡Successful ban!",
+		"successfuluser": "> Banned User",
+		"sucessfulreason": "> Reason"
+	},
+	"banlist": {
+		"nobans": "❌** | No bans were found on the server..**",
+		"description": "**📌 User and ID:** \n",
+		"embedtitle": "Banlist of **{guildName}**",
+		"orderby": "Order By: "
+	},
+	"channeltools": {
+		"deletechannel": "Delete Channel",
+		"renamechannel": "Rename Channel",
+		"slowmode": "Slow Mode",
+		"embeddescription": "You have invoked the Channel Tools command, this command will show you the options you have below to choose one just click and read what you will get later, thank you.\n**You have 10 seconds to choose.**"
+	},
+	"clear": {
+		"giveamount": "Please Give Me An Amount.",
+		"error100msg": "I cannot delete more than 100 messages."
+	},
+	"kick": {
+		"needmention": "**You need to mention the person you want to kick.**",
+		"reasonunspecified": "Reason unspecified",
+		"higherorequal": "**You cannot kick a user with higher or equal rank.**",
+		"cannotkick": "**I cannot kick this user.**",
+		"successfultitle": "¡Successful kick!",
+		"successfuluser": "> Kicked User",
+		"sucessfulreason": "> Reason"
+	},
+	"lock": {
+		"sucessfullocked": "<a:checkgif:835970348687556645> `|` The channel has been blocked."
+	},
+	"removerol": {
+		"mentionperson": "**You need to mention `one person`.**",
+		"mentionrole": "**You need to mention a role.**",
+		"higherorequal": "**The role you want to remove is higher than mine.**",
+		"rolhigher": "**The role you want to remove is higher than yours.**",
+		"nothaverol": "**This user does not have the aforementioned role.**",
+		"sucessfulremove": "<a:checkgif:835970348687556645> `|` Role successfully removed from {user}"
+	},
+	"setprefix": {
+		"enterprefix": "**You need to enter the `new prefix`.**",
+		"toolong": "The prefix entered is too long, please enter less than 5 characters.",
+		"hasadministrator": "**You do not have the necessary permission to execute this command. `ADMINISTRATOR`**.",
+		"sucesschange": "Prefix changed correctly to {prefix}."
+	},
+	"setlang": {
+		"hasadministrator": "**You do not have the necessary permission to execute this command. `ADMINISTRATOR`**",
+		"enterlang": "**You need to enter the `new lang`\n Supported: Spanish - English**",
+		"langusupp": "**Lang supported: Spanish - English**",
+		"sucess": "**Lang changed correctly to `{lang}`**"
+	},
+	"setnick": {
+		"mentionperson": "**Please mention the user.**",
+		"newusername": "**Please enter the new user name.**",
+		"higherorequal": "**You cannot change the nickname to a user with a higher role level than you.**",
+		"sucesschange": "<a:checkgif:835970348687556645> `|` User name changed correctly."
+	},
+	"unban": {
+		"validid": "**Enter a valid ID to unban the user.**",
+		"reason": "Reason unspecified",
+		"nobans": "**There are no bans registered on this server.**",
+		"erroruser": "**The user does not exist, please enter a valid ID.**",
+		"sucesstitle": "Correctly Unban",
+		"sucessmember": "Member:",
+		"sucessreason": "Reason:"
+	},
+	"unlock": {
+		"sucess": "<a:checkgif:835970348687556645> `|` The channel has been unblocked and anyone can now write to."
+	},
+	"8ball": {
+		"yes": "Yes",
+		"no": "No",
+		"maybe": "Maybe",
+		"obvius": "Obvius",
+		"isayyes": "I say yes",
+		"isayno": "I say no",
+		"probably": "Probably",
+		"errorlength": "**You need to add a longer question. __Must be longer than 5 characters.__**",
+		"toyourq": "To your question",
+		"myanswer": "My answer"
+	},
+	"ascii": {
+		"notext": "**You need to `write` something. (Maximum 20 characters.)**",
+		"noverylength": "**You need to write something `horter` (Maximum 20 characters.)**"
+	},
+	"coinflip": {
+		"got": " Got:"
+	},
+	"ohno": {
+		"entertext": "**Please enter the text. `Usage: $$ohno [Text]`**"
+	},
+	"say": {
+		"havemention": "**If you want to use this command do not mention anyone.**",
+		"needwrite": "**You need to `write` something.**"
+	},
+	"avatar": {
+		"downloadtext": "Download Avatar",
+		"requested": "Avatar requested by: {displayName}"
+	},
+	"commands": {
+		"title": "Hatsume List Commands",
+		"administration": "🔓 Administration",
+		"fun": "🎉 Fun",
+		"information": "📢 Information",
+		"utility": "⚙️ Utility",
+		"music": "🎶 Music",
+		"owner": "🔑 Owner",
+		"moreinformation": "**More information**",
+		"description": "\nIf you want to get more information about Hatsume just write `$$help`"
+	},
+	"covid": {
+		"cases": "`🤕` Cases",
+		"casestoday": "`🤯` Cases today",
+		"deaths": "`💀` Deaths",
+		"deathstoday": "`👻` Deaths today",
+		"criticalsituations": "`🥴` Critical Situations",
+		"recovered": "`😆` Recovered",
+		"oddsinamillion": "`😷` Odds in a million",
+		"countriesaffected": "`🚫` Countries affected"
+	},
+	"djsdoc": {
+		"entersearch": "**Enter what you want to search for, you can also set the branch as an option.. `Usage: $$djs (Branch) [Search]`**",
+		"error": "**An error occurred while consulting the documentation: {err}**"
+	},
+	"donate": {
+		"title": "¿ Could you help me ?",
+		"description": "Hello, I hope you're well, I'll explain you look... I need help to be able to continue entertaining them since I can not alone I hope you can help me and I would appreciate it very much with benefits <3. \n **[Donate](https://patreon.com/join/Hatsume)**"
+	},
+	"help": {
+		"title": "Information",
+		"description": "**Hello my name is Hatsume and I am a MultiFunctional bot created very recently, I hope to serve you and entertain you a lot <3.\n\nTo find the list of commands enter: `$$Commands`**",
+		"creator": "<:code:835987328047644682> Creator",
+		"prefix": "<a:loadingc:888572991196246037> Prefix",
+		"version": "<:bottag:835987716994498560> Version",
+		"invitation": "**Invitation**",
+		"donation": "**Donations**",
+		"support": "**Support**"
+	},
+	"invite": {
+		"description": "Here it is in link so you can invite the people you want!: https://discord.gg/${code}"
+	},
+	"npmsearch": {
+		"addpackage": "**You must add the package to search.**",
+		"packagenotfound": "**The package was not found.**",
+		"version": "**Version**",
+		"author": "**Author**",
+		"repository": "**Repository**",
+		"err": "**An error occurred while consulting the NPMs.\nError: **{err}"
+	},
+	"permissions": {
+		"footer": "Permissions for {user}",
+		"title": "Permission Check"
+	},
+	"ping": {
+		"loading": ":ping_pong: Loading.....",
+		"description": ":speech_balloon: Ping Messages: `{pingmessages} ms`\n :satellite_orbital: Ping DiscordAPI: `{pingapi} ms`"
+	},
+	"serverinfo": {
+		"boostlevel_none": "Without boost",
+		"boostlevel_tier1": "Boost level 1",
+		"boostlevel_tier2": "Boost level 2",
+		"boostlevel_tier3": "Boost level 3",
+		"serveri": "**Server information**",
+		"owneri": "**Owner information**",
+		"otheri": "**Other information**",
+		"serverid": "> <:bluepoint:889915814684278784> **Name:** {servername}\n> <:bluepoint:889915814684278784> **ID:** {serverid}\n> <:bluepoint:889915814684278784> **Creation:** {servercreation}\n> <:bluepoint:889915814684278784> **Boost level:** {serverboost}\n> <:bluepoint:889915814684278784> **Region:** {serverpreferredLocale}\n> <:bluepoint:889915814684278784> **Users:** ${serverMemberCount}",
+		"ownerid": "> <:bluepoint:889915814684278784> **User:** ${owneruser}\n> <:bluepoint:889915814684278784> **ID:** ${ownerid}\n> <:bluepoint:889915814684278784> **Boost this server:** {boostserver}",
+		"otherid": "> <:bluepoint:889915814684278784> **Number of roles:** {serverroles}\n> <:bluepoint:889915814684278784> **Number of channels:** {serverchannels}",
+		"yes": "Yes",
+		"no": "No"
+	},
+	"stats": {
+		"title": "Hatsume Statistics",
+		"memus": "`📇` Mem Usage",
+		"uptime": "`⌚️` Uptime",
+		"users": "`📁` Users",
+		"servers": "`📁` Servers",
+		"channels": "`📁` Channels",
+		"cpuusage": "`🤖` CPU Usage",
+		"platform": "`👾` Platform",
+		"request": "Request by {user}"
+	},
+	"structure": {
+		"title": "Channel structure of {guild}"
+	},
+	"userinfo": {
+		"online": "Online",
+		"dnd": "Don't disturb",
+		"idle": "Absent",
+		"offline": "Disconnected",
+		"Web": "Web",
+		"Mobile": "Mobile",
+		"Desktop": "Desktop",
+		"offinvi": "Offline/Invisible",
+		"author": "Information from {user}",
+		"informationi": "**Information on the server**",
+		"statesi": "**States**",
+		"useri": "**User information**",
+		"permi": "**Permission**",
+		"informationid": "> <:bluepoint:889915814684278784> **Highest role:** {highrol}\n> <:bluepoint:889915814684278784> **Roles:** {roles}\n> <:bluepoint:889915814684278784> **NickName:** {nickname}\n> <:bluepoint:889915814684278784> **Boost this server:** {boost}",
+		"statesid": "> <:bluepoint:889915814684278784> **Activity:** {activity}\n> <:bluepoint:889915814684278784> **State:** {status}\n> <:bluepoint:889915814684278784> **Device:** {clientStatus}",
+		"userid": "> <:bluepoint:889915814684278784> **Registered:** {userregistered}\n> <:bluepoint:889915814684278784> **Badges:** {userbadges}\n> <:bluepoint:889915814684278784> **Avatar:** {useravatar}\n> <:bluepoint:889915814684278784> **Name:** {username}\n> <:bluepoint:889915814684278784> **ID:** ${userid}"
+	},
+	"vote": {
+		"title": "¡Vote for Hatsume!",
+		"description": "**Top GG - https://top.gg/bot/874827585417248779** (Awaiting verification)\n**Discord Bot List - https://discordbotlist.com/bots/hatsume/upvote**",
+		"footer": "Thanks for vote."
+	},
+	"musicgeneral": {
+		"enternamesong": "**Enter the name of the song or the URL.**",
+		"channel": "Channel",
+		"duration": "Duration",
+		"volume": "Volume",
+		"entervoice": "**Enter a voice channel.**",
+		"anotherchannel": "**The bot is playing music on another channel.**",
+		"notreproducing": "**I'm not reproducing anything.**"
+	},
+	"lyrics": {
+		"enternamesong": "**Enter the name of the song. `Usage: $$lyrics [Song]`**"
+	},
+	"pause": {
+		"authortitle": "Reproducing:",
+		"title": "{namesong} - Paused"
+	},
+	"play": {
+		"channelfull": "**I can not join the channel because it is completely full, to join maximizes the capacity of this or made a user.**",
+		"addqueue": "Added to the queue!!!"
+	},
+	"playing": {
+		"authortitle": "Reproducing:",
+		"title": "{namesong}"
+	},
+	"playlist": {
+		"authortitle": "It started to reproduce!!",
+		"title": "<a:checkgif:835970348687556645> `|` {songs} songs added to the queue."
+	},
+	"resume": {
+		"authortitle": "Reproducing:",
+		"title": "{namesong} - Resumed"
+	},
+	"skip": {
+		"authortitle": "Reproducing:"
+	},
+	"stop": {
+		"title": "<a:checkgif:835970348687556645> `|` I have stopped."
+	},
+	"volume": {
+		"title": "<a:checkgif:835970348687556645> `|` Volume changed correctly."
+	},
+	"calculate": {
+		"enterexpression": "**Please enter an `expression`. Expressions available: `-`, `+`, `/`, `*`.**",
+		"error": "Error: Invalid Entry",
+		"title": "📊 Calculator",
+		"output": "Output",
+		"input": "Input"
+	},
+	"colorhex": {
+		"validhex": "**Please provide a valid hex code, `without #` !**"
+	},
+	"generatepassword": {
+		"enterlength": "**Please enter the length of the password. `Example: $$generate-password 10`**",
+		"sucessgenerate": "<a:giphyverifid:835970692930863185> Password generated correctly",
+		"description": "**Your password has been successfully generated and has been sent by `MD`.**",
+		"mdtext": "**Your secure password is:** ||{password}||"
+	},
+	"infoemoji": {
+		"enteremoji": "**Please enter emoji.. `Example: $$infoemoji [emoji]`**",
+		"invalid": "Invalid emoji!",
+		"sucesstitle": "<a:giphyverifid:835970692930863185> Emoji encontrado correctamente",
+		"animated": "**Information: <a:{name}:{id}>**",
+		"notanimated": "**Information: <{name}:{id}>**"
+	},
+	"nuke": {
+		"sucess": "**This channel has been nuked**"
+	},
+	"randomnumber": {
+		"from": "**Please enter from which number up to which number you want to be the `random number`. `Usage: $$RandomNumber <from> <to>`**",
+		"to": "**You are missing the second number that decides `how far the random number will go`. `Usage: $$RandomNumber <from> <to>`**",
+		"title": "¡ Random Number ! 🎁",
+		"sucess": "**The random number between {from} y {to} is: {random}.**"
+	},
+	"randomuser": {
+		"title": "¡ Random User ! 🎁",
+		"description": "**The random person I touch is {randomuser}**"
+	},
+	"reminder": {
+		"entertime": "Please enter the time.",
+		"author": "Reminder ⏰",
+		"description": "**Alright, I will remind you in ``{time}``**",
+		"timeover": "<@{authorid}>**, Your Timer is over**"
+	},
+	"reverse": {
+		"entertext": "**Please enter the `text`. `Usage: $$reverse <Text>`**",
+		"description": "**Entered Text: ``{input}`` \n Output: ``{output}`` **"
+	},
+	"suggest": {
+		"entersuggest": "**Please enter a suggestion. It must be larger than 5 sides**",
+		"suggestsenttitle": "¡ Suggestion Sent !",
+		"suggestsentdesc": "**Suggestion: ``{suggest}`` \n Thank you very much for helping us to improve the bot.**",
+		"suggestarrivedtitle": "¡ A suggestion has arrived !",
+		"suggestarriveddesc": "**Suggestion: ``${suggest}`` \nSuggestion of: <@{authorid}>\nSuggestion of server: {guildname}**"
+	},
+	"weather": {
+		"enterlocation": "**Please `enter a location`.**",
+		"validlocation": "**An error has occurred with the location please enter a `valid location`.**",
+		"embedauthor": "Weather Status in {currentcity}",
+		"timezone": "Time Zone",
+		"temperature": "Temperature",
+		"wind": "Wind",
+		"humidity": "Humidity",
+		"date": "Date",
+		"embedfooter": "Interesting weather out there, isn't it?"
+	},
+	"wikirandom": {
+		"title": "¡ WikiRandom ! 🎁",
+		"description": "[¡ Click here to access the unknown... !](http://es.wikipedia.org/wiki/Special:Random)"
 	}
 }
