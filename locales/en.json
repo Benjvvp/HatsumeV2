@@ -11,6 +11,27 @@
 	"permissionAuth": {
 		"bot_description": "**I need the necessary permissions to execute this command. `{permissionString}`**",
 		"user_description": "**You do not have the necessary permission to execute this command. `{permissionString}`**"
+	},
+	"deletechannel": {
+		"areyousure": "Are you sure?",
+		"yes": "Yes",
+		"no": "No"
+	},
+	"renamechannel": {
+		"typechannel": "Then type the new channel name",
+		"cancel": "Cancel",
+		"sucessrename": "<a:checkgif:835970348687556645> `|` The channel has been renamed correctly.",
+		"endcollecterror": "**You did not enter the name and the time has expired, to retry enter the command again.**"
+	},
+	"slowchannel": {
+		"embedslowchannel_title": "Then, insert the time you want or if you want to deactivate it (off).",
+		"embedSlowON_title": "Insert the time in seconds - Example: 50s.",
+		"cancel": "Cancel",
+		"on": "On",
+		"off": "Off",
+		"setoff": "<a:checkgif:835970348687556645> `|` It has been deactivated correctly.",
+		"seton": "<a:checkgif:835970348687556645> `|` Slow mode set correctly.",
+		"validformat": "**Please insert a `valid format`, try again.**",
+		"expiredinteraction": "**You did not enter the name and the time has expired, to retry enter the command again.**"
 	}
-
 }

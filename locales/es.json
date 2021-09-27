@@ -11,6 +11,27 @@
 	"permissionAuth": {
 		"bot_description": "**Necesito los permisos necesarios para ejecutar este comando. `{permissionString}`**",
 		"user_description": "**No tiene el permiso necesario para ejecutar este comando. `{permissionString}`**"
+	},
+	"deletechannel": {
+		"areyousure": "¿Está seguro?",
+		"yes": "Si",
+		"no": "No"
+	},
+	"renamechannel": {
+		"typechannel": "A continuación, escriba el nombre del nuevo canal",
+		"cancel": "Cancelar",
+		"sucessrename": "<a:checkgif:835970348687556645> `|` El canal ha sido renombrado correctamente.",
+		"endcollecterror": "**No has introducido el nombre y el tiempo ha expirado, para reintentar introduce el comando de nuevo.**"
+	},
+	"slowchannel": {
+		"embedslowchannel_title": "A continuación, introduzca el tiempo que desee o si quiere desactivarla (Desactivar).",
+		"embedSlowON_title": "Introduzca el tiempo en segundos - Ejemplo: 50s.",
+		"cancel": "Cancelar",
+		"on": "Activar",
+		"off": "Desactivar",
+		"setoff": "<a:checkgif:835970348687556645> `|` Se ha desactivado correctamente.",
+		"seton": "<a:checkgif:835970348687556645> `|` Modo lento ajustado correctamente.",
+		"validformat": "**Por favor, inserte un `formato válido`, inténtelo de nuevo.**",
+		"expiredinteraction": "**No ha introducido el nombre y el tiempo ha expirado, para reintentar introduzca el comando de nuevo.**"
 	}
-
 }

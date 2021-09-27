@@ -1,7 +1,7 @@
 module.exports = {
     name: "lyrics",
     async run(message, args, client) {
-        let guildQueue = client.player.getQueue(message.guild.id);
+        let guildQueue = await client.player.getQueue(message.guild.id);
         const {
             Util,
             MessageEmbed

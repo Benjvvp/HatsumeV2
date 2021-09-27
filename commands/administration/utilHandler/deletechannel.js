@@ -1,8 +1,10 @@
 const { MessageActionRow, MessageButton, MessageEmbed, ButtonInteraction } = require('discord.js')
 module.exports = async (message, msg) => {
+    const {guild} = message;
+
     /* Delete Channel DOM  */
     const embedDeleteChannel = new MessageEmbed()
-        .setTitle('Are you sure?')
+        .setTitle(client.languages.__({phrase: 'deletechannel.areyousure', locale: guild.lang}))
         .setColor('RED')
 
 
@@ -10,11 +12,11 @@ module.exports = async (message, msg) => {
         .addComponents(
             new MessageButton()
                 .setCustomId('deletechannelyes')
-                .setLabel('Yes')
+                .setLabel(client.languages.__({phrase: 'deletechannel.yes', locale: guild.lang}))
                 .setStyle('SUCCESS'),
             new MessageButton()
                 .setCustomId('deletechannelno')
-                .setLabel('No')
+                .setLabel(client.languages.__({phrase: 'deletechannel.no', locale: guild.lang}))
                 .setStyle('DANGER'),
             )
 

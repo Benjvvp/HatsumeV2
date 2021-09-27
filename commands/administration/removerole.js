@@ -6,7 +6,7 @@ module.exports = {
     async run(message, args, client) {
         const Discord = require('discord.js')
         
-        let p = permissionAuth(message, 'MANAGE_ROLES')
+        let p = await permissionAuth(message, 'MANAGE_ROLES')
         if(!p === undefined || p ) return;
         
         const user = message.mentions.members.first();
