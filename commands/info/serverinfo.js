@@ -12,9 +12,9 @@ module.exports = {
         let owner = await server.fetchOwner();
 
         const embed = new Discord.MessageEmbed() 
-            .addField(client.languages.__({phrase: 'serverinfo.serveri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.serverid'}, {servername: server.name, serverid: server.id, servercreation: `${server.createdAt.toDateString().split(" ")[2]}/${server.createdAt.toDateString().split(" ")[1]}/${server.createdAt.toDateString().split(" ")[3]}`, serverboost: boostlevel[server.premiumTier], serverpreferredLocale: server.preferredLocale, serverMemberCount: server.memberCount}), false)
-            .addField(client.languages.__({phrase: 'serverinfo.owneri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.ownerid'}, {owneruser: owner.user.username, ownerid: owner.user.id, boostserver: owner.user.premiumSince ? client.languages.__({phrase: 'serverinfo.yes', locale: lang}) : client.languages.__({phrase: 'serverinfo.no', locale: lang})}), false)
-            .addField(client.languages.__({phrase: 'serverinfo.otheri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.otherid'}, {serverroles: server.roles.cache.size, serverchannels: server.channels.cache.size}), false)
+            .addField(client.languages.__({phrase: 'serverinfo.serveri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.serverid', locale: lang}, {servername: server.name, serverid: server.id, servercreation: `${server.createdAt.toDateString().split(" ")[2]}/${server.createdAt.toDateString().split(" ")[1]}/${server.createdAt.toDateString().split(" ")[3]}`, serverboost: boostlevel[server.premiumTier], serverpreferredLocale: server.preferredLocale, serverMemberCount: server.memberCount}), false)
+            .addField(client.languages.__({phrase: 'serverinfo.owneri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.ownerid', locale: lang}, {owneruser: owner.user.username, ownerid: owner.user.id, boostserver: owner.user.premiumSince ? client.languages.__({phrase: 'serverinfo.yes', locale: lang}) : client.languages.__({phrase: 'serverinfo.no', locale: lang})}), false)
+            .addField(client.languages.__({phrase: 'serverinfo.otheri', locale: lang}), client.languages.__mf({phrase: 'serverinfo.otherid', locale: lang}, {serverroles: server.roles.cache.size, serverchannels: server.channels.cache.size}), false)
             .setColor(`AQUA`)
             .setThumbnail(server.iconURL())
         await message.channel.send({embeds: [embed]})

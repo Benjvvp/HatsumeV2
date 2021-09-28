@@ -66,7 +66,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed() 
             .setAuthor(client.languages.__mf({phrase: 'userinfo.author', locale: lang}, {user: user.user.id}))
             .addField(client.languages.__({phrase: 'userinfo.informationi', locale: lang}), client.languages.__mf({phrase: 'userinfo.informationid', locale: lang}, {highrol: user.roles.highest,roles: user.roles.cache.filter(r => r.id !== message.guild.id).map(roles => `${roles}`).join(" **|** ") || "No Roles", nickname: user.nickname ? user.nickname : 'None', boost: user.premiumSince ? `Yes` : "No"}), false)
-            .addField(client.languages.__({phrase: 'userinfo.statesi', locale: lang}), client.languages.__mf({phrase: 'userinfo.statesid', locale: lang}, {activity: user.presence != null ? user.presence.game.name : "Nothing", status: status, clientStatus: clientStatus}), false)
+            .addField(client.languages.__({phrase: 'userinfo.statesi', locale: lang}), client.languages.__mf({phrase: 'userinfo.statesid', locale: lang}, {status: status, clientStatus: clientStatus}), false)
             .addField(client.languages.__({phrase: 'userinfo.useri', locale: lang}), client.languages.__mf({phrase: 'userinfo.userid', locale: lang}, {userregistered: user.user.createdAt.toLocaleDateString("es-pe"), userbadges: user.user.flags.toArray().length ? user.user.flags.toArray().map(badge => badges1[badge]).join(' ') : "It does not have", useravatar: `[Download](${user.user.displayAvatarURL({format: 'png',dynamic: true})})`,username: user.user.username, userid: user.id}), false)
             .addField(client.languages.__({phrase: 'userinfo.permi', locale: lang}), `\n
             \`\`\`${permissions}\`\`\`

@@ -215,7 +215,7 @@
 		"owneri": "**Owner information**",
 		"otheri": "**Other information**",
 		"serverid": "> <:bluepoint:889915814684278784> **Name:** {servername}\n> <:bluepoint:889915814684278784> **ID:** {serverid}\n> <:bluepoint:889915814684278784> **Creation:** {servercreation}\n> <:bluepoint:889915814684278784> **Boost level:** {serverboost}\n> <:bluepoint:889915814684278784> **Region:** {serverpreferredLocale}\n> <:bluepoint:889915814684278784> **Users:** ${serverMemberCount}",
-		"ownerid": "> <:bluepoint:889915814684278784> **User:** ${owneruser}\n> <:bluepoint:889915814684278784> **ID:** ${ownerid}\n> <:bluepoint:889915814684278784> **Boost this server:** {boostserver}",
+		"ownerid": "> <:bluepoint:889915814684278784> **User:** {owneruser}\n> <:bluepoint:889915814684278784> **ID:** {ownerid}\n> <:bluepoint:889915814684278784> **Boost this server:** {boostserver}",
 		"otherid": "> <:bluepoint:889915814684278784> **Number of roles:** {serverroles}\n> <:bluepoint:889915814684278784> **Number of channels:** {serverchannels}",
 		"yes": "Yes",
 		"no": "No"
@@ -249,7 +249,7 @@
 		"useri": "**User information**",
 		"permi": "**Permission**",
 		"informationid": "> <:bluepoint:889915814684278784> **Highest role:** {highrol}\n> <:bluepoint:889915814684278784> **Roles:** {roles}\n> <:bluepoint:889915814684278784> **NickName:** {nickname}\n> <:bluepoint:889915814684278784> **Boost this server:** {boost}",
-		"statesid": "> <:bluepoint:889915814684278784> **Activity:** {activity}\n> <:bluepoint:889915814684278784> **State:** {status}\n> <:bluepoint:889915814684278784> **Device:** {clientStatus}",
+		"statesid": "> <:bluepoint:889915814684278784> **State:** {status}\n> <:bluepoint:889915814684278784> **Device:** {clientStatus}",
 		"userid": "> <:bluepoint:889915814684278784> **Registered:** {userregistered}\n> <:bluepoint:889915814684278784> **Badges:** {userbadges}\n> <:bluepoint:889915814684278784> **Avatar:** {useravatar}\n> <:bluepoint:889915814684278784> **Name:** {username}\n> <:bluepoint:889915814684278784> **ID:** ${userid}"
 	},
 	"vote": {

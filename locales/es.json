@@ -1,7 +1,7 @@
 {
-    "embederror":{
-        "title": "❌ ¡ Hay un error !"
-    },
+	"embederror": {
+		"title": "❌ ¡ Hay un error !"
+	},
 	"handlerMessages": {
 		"pinged_title": "Oops, ¿me has llamado? ¿Necesitas ayuda?",
 		"pinged_description": "**Hola!!, mi nombre es Hatsume y puedes ver mi lista de comandos con `$$Commands` Gracias.**",
@@ -249,7 +249,7 @@
 		"useri": "**Informacion del usuario**",
 		"permi": "**Permisos**",
 		"informationid": "> <:bluepoint:889915814684278784> **Rol mas alto:** {highrol}\n> <:bluepoint:889915814684278784> **Roles:** {roles}\n> <:bluepoint:889915814684278784> **Apodo:** {nickname}\n> <:bluepoint:889915814684278784> **A boosteado este server:** {boost}",
-		"statesid": "> <:bluepoint:889915814684278784> **Actividad:** {activity}\n> <:bluepoint:889915814684278784> **Estado:** {status}\n> <:bluepoint:889915814684278784> **Dispositivo:** {clientStatus}",
+		"statesid": "> <:bluepoint:889915814684278784> **Estado:** {status}\n> <:bluepoint:889915814684278784> **Dispositivo:** {clientStatus}",
 		"userid": "> <:bluepoint:889915814684278784> **Registrado:** {userregistered}\n> <:bluepoint:889915814684278784> **Insignias:** {userbadges}\n> <:bluepoint:889915814684278784> **Avatar:** {useravatar}\n> <:bluepoint:889915814684278784> **Nombre:** {username}\n> <:bluepoint:889915814684278784> **ID:** ${userid}"
 	},
 	"vote": {
