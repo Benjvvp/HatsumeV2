@@ -188,7 +188,7 @@
 		"support": "**Support**"
 	},
 	"invite": {
-		"description": "Here it is in link so you can invite the people you want!: https://discord.gg/${code}"
+		"description": "Here it is in link so you can invite the people you want!: https://discord.gg/{code}"
 	},
 	"npmsearch": {
 		"addpackage": "**You must add the package to search.**",
@@ -214,7 +214,7 @@
 		"serveri": "**Server information**",
 		"owneri": "**Owner information**",
 		"otheri": "**Other information**",
-		"serverid": "> <:bluepoint:889915814684278784> **Name:** {servername}\n> <:bluepoint:889915814684278784> **ID:** {serverid}\n> <:bluepoint:889915814684278784> **Creation:** {servercreation}\n> <:bluepoint:889915814684278784> **Boost level:** {serverboost}\n> <:bluepoint:889915814684278784> **Region:** {serverpreferredLocale}\n> <:bluepoint:889915814684278784> **Users:** ${serverMemberCount}",
+		"serverid": "> <:bluepoint:889915814684278784> **Name:** {servername}\n> <:bluepoint:889915814684278784> **ID:** {serverid}\n> <:bluepoint:889915814684278784> **Creation:** {servercreation}\n> <:bluepoint:889915814684278784> **Boost level:** {serverboost}\n> <:bluepoint:889915814684278784> **Region:** {serverpreferredLocale}\n> <:bluepoint:889915814684278784> **Users:** {serverMemberCount}",
 		"ownerid": "> <:bluepoint:889915814684278784> **User:** {owneruser}\n> <:bluepoint:889915814684278784> **ID:** {ownerid}\n> <:bluepoint:889915814684278784> **Boost this server:** {boostserver}",
 		"otherid": "> <:bluepoint:889915814684278784> **Number of roles:** {serverroles}\n> <:bluepoint:889915814684278784> **Number of channels:** {serverchannels}",
 		"yes": "Yes",
@@ -250,7 +250,7 @@
 		"permi": "**Permission**",
 		"informationid": "> <:bluepoint:889915814684278784> **Highest role:** {highrol}\n> <:bluepoint:889915814684278784> **Roles:** {roles}\n> <:bluepoint:889915814684278784> **NickName:** {nickname}\n> <:bluepoint:889915814684278784> **Boost this server:** {boost}",
 		"statesid": "> <:bluepoint:889915814684278784> **State:** {status}\n> <:bluepoint:889915814684278784> **Device:** {clientStatus}",
-		"userid": "> <:bluepoint:889915814684278784> **Registered:** {userregistered}\n> <:bluepoint:889915814684278784> **Badges:** {userbadges}\n> <:bluepoint:889915814684278784> **Avatar:** {useravatar}\n> <:bluepoint:889915814684278784> **Name:** {username}\n> <:bluepoint:889915814684278784> **ID:** ${userid}"
+		"userid": "> <:bluepoint:889915814684278784> **Registered:** {userregistered}\n> <:bluepoint:889915814684278784> **Badges:** {userbadges}\n> <:bluepoint:889915814684278784> **Avatar:** {useravatar}\n> <:bluepoint:889915814684278784> **Name:** {username}\n> <:bluepoint:889915814684278784> **ID:** {userid}"
 	},
 	"vote": {
 		"title": "¡Vote for Hatsume!",
@@ -349,7 +349,7 @@
 		"suggestsenttitle": "¡ Suggestion Sent !",
 		"suggestsentdesc": "**Suggestion: ``{suggest}`` \n Thank you very much for helping us to improve the bot.**",
 		"suggestarrivedtitle": "¡ A suggestion has arrived !",
-		"suggestarriveddesc": "**Suggestion: ``${suggest}`` \nSuggestion of: <@{authorid}>\nSuggestion of server: {guildname}**"
+		"suggestarriveddesc": "**Suggestion: ``{suggest}`` \nSuggestion of: <@{authorid}>\nSuggestion of server: {guildname}**"
 	},
 	"weather": {
 		"enterlocation": "**Please `enter a location`.**",
