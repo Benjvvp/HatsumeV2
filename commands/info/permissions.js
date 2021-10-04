@@ -43,7 +43,7 @@ module.exports = {
         .addField('`View Audit Logs`', `${viewauditlogs ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Move Members`', `${movemembers ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
         .addField('`Mention Everyone`', `${mentioneveryone ? "<:checkemojih:836343706855407667>" : "<:xmarkc:836340693289926656>"}`, true)
-        .setFooter(client.languages.__mf({phrase: 'permissions.footer', locale: lang}, {user: user}))
+        .setFooter(client.languages.__mf({phrase: 'permissions.footer', locale: lang}, {user: message.member.displayName}))
         .setColor('BLUE')
         message.channel.send({embeds: [embed]})
     }
