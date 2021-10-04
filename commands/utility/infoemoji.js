@@ -46,7 +46,7 @@ module.exports = {
             })
           )
           .setDescription(
-            client.languages.__(
+            client.languages.__mf(
               { phrase: "infoemoji.animated", locale: lang },
               { name: e.name, id: e.id }
             )
@@ -60,7 +60,7 @@ module.exports = {
           client.languages.__({ phrase: "infoemoji.sucesstitle", locale: lang })
         )
         .setDescription(
-          client.languages.__(
+          client.languages.__mf(
             { phrase: "infoemoji.notanimated", locale: lang },
             { name: e.name, id: e.id }
           )
