@@ -3,8 +3,7 @@ module.exports = {
     async run(message, args, client, lang) {
         const Discord = require('discord.js');
 
-        const db = require('megadb');
-        const servidores = new db.crearDB(`servidores`);
+        const serverDB = require('../../database/schemas/Guild')
 
         let langt = args[0];
 
@@ -29,8 +28,8 @@ module.exports = {
         if(!langt == 'english' || !langt == 'spanish') return message.channel.send(client.languages.__({phrase: 'setlang.langusupp', locale: lang}))
         if(langt === 'english') langt = 'en';
         if(langt === 'spanish') langt = 'es';
-        servidores.set(`${message.guild.id}.lang`, langt).then(
-            message.channel.send(client.languages.__mf({phrase: 'setlang.sucess', locale: lang}, {lang: lang}))
+        serverDB.updateOne({id: message.guild.id}, {lang: langt }).then(
+            message.channel.send(client.languages.__mf({phrase: 'setlang.sucess', locale: langt}, {lang: langt}))
         );
     }
 } 

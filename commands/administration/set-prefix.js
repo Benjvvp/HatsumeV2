@@ -3,8 +3,8 @@ module.exports = {
     async run(message, args, client, lang) {
         const Discord = require('discord.js');
 
-        const db = require('megadb');
-        const servidores = new db.crearDB(`servidores`);
+        const serverDB = require('../../database/schemas/Guild')
+        let serv = await serverDB.find({id: message.guild.id});
 
         let prefix = args[0];
         if (!prefix) {
@@ -27,13 +27,22 @@ module.exports = {
                 .setColor("RED")
             return await message.channel.send({embeds: [embed]})
         }
+
+        if(serv[0].prefix === prefix){
+            return message.channel.send(client.languages.__({phrase: 'setprefix.equal', locale: lang}))
+        }
+        if(serv[0].prefix == null && prefix === '$$'){
+            return message.channel.send(client.languages.__({phrase: 'setprefix.equal', locale: lang}))
+        }
         if(prefix == "$$"){
-            message.channel.send(client.languages.__mf({phrase: 'setprefix.sucesschange', locale: lang}, {prefix: prefix}))
-            servidores.delete(`${message.guild.id}.prefix`)
+            serverDB.updateOne({id: message.guild.id}, { $unset: {prefix: ''}}).then(
+                message.channel.send(client.languages.__mf({phrase: 'setprefix.sucesschange', locale: lang}, {prefix: prefix}))
+            );
             return;
         }
-        servidores.set(`${message.guild.id}.prefix`, args[0]).then(
+        serverDB.updateOne({id: message.guild.id}, {prefix: args[0]}).then(
             message.channel.send(client.languages.__mf({phrase: 'setprefix.sucesschange', locale: lang}, {prefix: prefix}))
         );
+        
     }
 } 

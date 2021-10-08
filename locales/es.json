@@ -90,9 +90,10 @@
 	},
 	"setprefix": {
 		"enterprefix": "**Es necesario introducir el `nuevo prefijo`..**",
-		"toolong": "El prefijo introducido es demasiado largo, por favor, introduzca menos de 5 caracteres.",
+		"toolong": "**El prefijo introducido es demasiado largo, por favor, introduzca menos de 5 caracteres.**",
 		"hasadministrator": "**No tiene el permiso necesario para ejecutar este comando. `ADMINISTRADOR`**.",
-		"sucesschange": "El prefijo cambió correctamente a {prefix}."
+		"sucesschange": "**El prefijo cambió correctamente a {prefix}.**",
+		"equal": "**Por favor ingresa un prefijo distinto al que ya tienes.**"
 	},
 	"setlang": {
 		"hasadministrator": "**No tiene el permiso necesario para ejecutar este comando. `ADMINISTRATOR`**",

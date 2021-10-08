@@ -4,7 +4,6 @@ const {
 } = require("fs")
 
 require('dotenv').config();
-const db = require('megadb')
 
 const {
     Collection,
@@ -15,6 +14,7 @@ const ascii = require("ascii-table")
 
 const table = new ascii().setHeading("Comando", "Estado de carga")
 
+const serverDB = require('../database/schemas/Guild')
 
 module.exports = async (client) => {
 
@@ -42,16 +42,25 @@ module.exports = async (client) => {
     client.on("messageCreate", async (message) => {
         const {author, channel, guild} = message;
         let lang = guild.lang;
+        let prefix = "$$"
 
-        const servidores = new db.crearDB(`servidores`);
         lang = 'en';
-        if(servidores.has(`${message.guild.id}.lang`)){
-            guild.lang = await servidores.get(`${message.guild.id}.lang`)
+        
+        let serverDBG = await serverDB.find({id: message.guild.id}); //Get guild
+
+        if(!serverDBG.length) {
+            let s = new serverDB({id: message.guild.id})
+            s.save()
+            return;
+        }
+
+        if(serverDBG[0].lang){
+            guild.lang = serverDBG[0].lang
             lang = guild.lang
         }
-        let prefix = "$$"
-        if(servidores.has(`${message.guild.id}.prefix`)){
-            prefix = await servidores.obtener(`${message.guild.id}.prefix`);
+
+        if(serverDBG[0].prefix){
+            prefix = serverDBG[0].prefix;
         }
 
         // Check if user is a bot

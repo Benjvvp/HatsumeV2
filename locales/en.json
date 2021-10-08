@@ -90,9 +90,10 @@
 	},
 	"setprefix": {
 		"enterprefix": "**You need to enter the `new prefix`.**",
-		"toolong": "The prefix entered is too long, please enter less than 5 characters.",
+		"toolong": "**The prefix entered is too long, please enter less than 5 characters.**",
 		"hasadministrator": "**You do not have the necessary permission to execute this command. `ADMINISTRATOR`**.",
-		"sucesschange": "Prefix changed correctly to {prefix}."
+		"sucesschange": "**Prefix changed correctly to {prefix}.**",
+		"equal": "**Please enter a different prefix than the one you already have...**"
 	},
 	"setlang": {
 		"hasadministrator": "**You do not have the necessary permission to execute this command. `ADMINISTRATOR`**",

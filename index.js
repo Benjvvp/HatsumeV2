@@ -1,11 +1,17 @@
 const { Client, Intents } = require('discord.js');
 const intents = new Intents(32767);
 const client = new Client({ intents });
-const chalk = require('chalk');
 const fs = require('fs');
-
 /* Insert .ENV File */
 require('dotenv').config()
+
+/* Connect to DB */
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGOURI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+})
+
 /* Event Handler */
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 const commandHandler = require('./handler/handlerMessages')
@@ -22,6 +28,7 @@ for (const file of eventFiles) {
 //Initialize multi languages
 const i18n = require('./utils/i18n');
 i18n(client);
+
 //Initialize Music Manager
 const { Player } = require("discord-music-player");
 
@@ -35,10 +42,13 @@ const player = new Player(client, {
 	timeout: 5
 });
 client.player = player;
+
 //Initialize Comamnd Manager
 commandHandler(client)
+
 //Music Queue
 client.queue = new Map()
+
 //Connect with Discord
 client.login(process.env.TOKEN);
 
