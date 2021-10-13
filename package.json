@@ -36,6 +36,7 @@
     "passport-discord": "^0.1.4",
     "simple-youtube-api": "^5.2.1",
     "solenolyrics": "^5.0.0",
+    "star-labs": "^1.1.2",
     "weather-js": "^2.0.0"
   }
 }

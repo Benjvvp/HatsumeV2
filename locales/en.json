@@ -2,6 +2,24 @@
 	"embederror": {
 		"title": "❌ ¡ There's a mistake !"
 	},
+	"errors": {
+		"needmention": "**You need to mention `one person`.**"
+	},
+	"kiss": {
+		"description": "**<@{aA}> Kiss to <@{aB}> <3**"
+	},
+	"cry": {
+		"description": "**<@{aA}> has begun to cry :(**"
+	},
+	"dance": {
+		"description": "**<@{aA}> is dancing! 7w7**"
+	},
+	"hug": {
+		"description": "**<@{aA}> embraces <@{aB}>**"
+	},
+	"blush": {
+		"description": "**<@{aA}> has blushed**"
+	},
 	"handlerMessages": {
 		"pinged_title": "Oops, you pinged me? Need help?",
 		"pinged_description": "**Hello!!, my name is Hatsume and you can see my list of commands with `$$Commands` Thank you.**",
