@@ -1,6 +1,8 @@
 const { Client, Intents } = require('discord.js');
 const intents = new Intents(32767);
 const client = new Client({ intents });
+const { AutoPoster } = require('topgg-autoposter')
+
 const fs = require('fs');
 /* Insert .ENV File */
 require('dotenv').config()
@@ -43,6 +45,11 @@ const player = new Player(client, {
 });
 client.player = player;
 
+const ap = AutoPoster(process.env.TOKEN, client);
+ap.on('posted', () => {
+	console.log('Posted Stats')
+})
+
 //Initialize Comamnd Manager
 commandHandler(client)
 
@@ -51,6 +58,8 @@ client.queue = new Map()
 
 //Connect with Discord
 client.login(process.env.TOKEN);
+
+
 
 // Error handler - omit crashed
 client.on("debug", () => {})
