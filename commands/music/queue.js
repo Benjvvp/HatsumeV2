@@ -1,9 +1,9 @@
-const musicDS = require("discord-music-player");
 const {MessageActionRow, MessageEmbed, MessageButton} = require('discord.js');
 module.exports = {
     name: "queue",
     async run(message, args, client, lang) {
-        let guildQueue = client.player.getQueue(message.guild.id);
+        const guildQueue = client.distube.getQueue(message);
+
         let currentPage = 0;
         const embeds = generateQueueEmbeds(guildQueue.songs)
         if(!message.member.voice.channel){
@@ -22,7 +22,7 @@ module.exports = {
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
-        if(guildQueue.songs.length == 0){
+        if(!guildQueue.playing){
             const embed = new MessageEmbed()
                 .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
                 .setDescription(client.languages.__({phrase: 'musicgeneral.notreproducing', locale: lang}))

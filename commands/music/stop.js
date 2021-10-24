@@ -1,10 +1,9 @@
-const musicDS = require("discord-music-player");
 const Discord = require('discord.js');
 module.exports = {
     name: "stop",
     async run(message, args, client, lang) {
-        let guildQueue = client.player.getQueue(message.guild.id);
-
+        const guildQueue = client.distube.getQueue(message)
+        
         if(!message.member.voice.channel){
             const embed = new Discord.MessageEmbed()
                 .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
@@ -21,7 +20,7 @@ module.exports = {
                 .setColor("RED")
             return message.channel.send({embeds: [embed]})
         }
-        if(guildQueue.songs.length == 0){
+        if(!guildQueue.playing){
             const embed = new Discord.MessageEmbed()
                 .setAuthor(client.languages.__({phrase: 'embederror.title', locale: lang}))
                 .setDescription(client.languages.__({phrase: 'musicgeneral.notreproducing', locale: lang}))
@@ -30,8 +29,7 @@ module.exports = {
             return message.channel.send({embeds: [embed]})
         }
 
-        await guildQueue.stop()
-        guildQueue = client.player.getQueue(message.guild.id); //refresh
+        await guildQueue.stop(message);
 
         const embed = new Discord.MessageEmbed()
             .setTitle(client.languages.__({phrase: 'stop.title', locale: lang}))

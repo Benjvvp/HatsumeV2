@@ -289,12 +289,14 @@
 		"enternamesong": "**Introduce el nombre de la canción. `Uso: $$lyrics [Cancion]`**"
 	},
 	"pause": {
-		"authortitle": "Reproduciendo:",
-		"title": "{namesong} - Pausado"
+		"authortitle": "Pausado",
+		"title": "{namesong}",
+		"notresumed": "**la cancion ya se encuentra pausada.**"
 	},
 	"play": {
 		"channelfull": "**No puedo unirme al canal porque está completamente lleno.**",
-		"addqueue": "¡¡¡Añadido a la cola!!!"
+		"addqueue": "¡¡¡Añadido a la cola!!!",
+		"play": "Reproduciendo"
 	},
 	"playing": {
 		"authortitle": "Reproduciendo:",
@@ -305,17 +307,20 @@
 		"title": "<a:checkgif:835970348687556645> `|` {songs} canciones añadidas a la cola."
 	},
 	"resume": {
-		"authortitle": "Reproduciendo:",
-		"title": "{namesong} - Reanudado"
+		"authortitle": "Reanudado:",
+		"title": "{namesong}",
+		"notpaused": "**La cancion no esta pausada.**"
 	},
 	"skip": {
-		"authortitle": "Reproduciendo:"
+		"authortitle": "Reproduciendo:",
+		"errorLength": "No hay ninguna cancion para saltar."
 	},
 	"stop": {
 		"title": "<a:checkgif:835970348687556645> `|` He dejado de reproducir musica."
 	},
 	"volume": {
-		"title": "<a:checkgif:835970348687556645> `|` El volumen ha cambiado correctamente."
+		"title": "<a:checkgif:835970348687556645> `|` El volumen ha cambiado correctamente.",
+		"errorvolume": "Por favor ingresa un numero valido."
 	},
 	"calculate": {
 		"enterexpression": "**Por favor, introduzca una `expresión`. Expresiones disponibles: `-`, `+`, `/`, `*`.**",

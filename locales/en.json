@@ -289,12 +289,14 @@
 		"enternamesong": "**Enter the name of the song. `Usage: $$lyrics [Song]`**"
 	},
 	"pause": {
-		"authortitle": "Reproducing:",
-		"title": "{namesong} - Paused"
+		"authortitle": "Paused",
+		"title": "{namesong}",
+		"notresumed": "**The song is already paused.**"
 	},
 	"play": {
 		"channelfull": "**I can not join the channel because it is completely full, to join maximizes the capacity of this or made a user.**",
-		"addqueue": "Added to the queue!!!"
+		"addqueue": "Added to the queue!!!",
+		"play": "Playing"
 	},
 	"playing": {
 		"authortitle": "Reproducing:",
@@ -305,17 +307,20 @@
 		"title": "<a:checkgif:835970348687556645> `|` {songs} songs added to the queue."
 	},
 	"resume": {
-		"authortitle": "Reproducing:",
-		"title": "{namesong} - Resumed"
+		"authortitle": "Resumed",
+		"title": "{namesong}",
+		"notpaused": "**The song is not paused.**"
 	},
 	"skip": {
-		"authortitle": "Reproducing:"
+		"authortitle": "Reproducing:",
+		"errorLength": "There is no song to jump to."
 	},
 	"stop": {
 		"title": "<a:checkgif:835970348687556645> `|` I have stopped."
 	},
 	"volume": {
-		"title": "<a:checkgif:835970348687556645> `|` Volume changed correctly."
+		"title": "<a:checkgif:835970348687556645> `|` Volume changed correctly.",
+		"errorvolume": "Please enter a valid number."
 	},
 	"calculate": {
 		"enterexpression": "**Please enter an `expression`. Expressions available: `-`, `+`, `/`, `*`.**",

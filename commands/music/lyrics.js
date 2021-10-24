@@ -1,7 +1,7 @@
 module.exports = {
     name: "lyrics",
     async run(message, args, client, lang) {
-        let guildQueue = await client.player.getQueue(message.guild.id);
+        const guildQueue = client.distube.getQueue(message);
         const {
             Util,
             MessageEmbed
@@ -10,13 +10,14 @@ module.exports = {
 
         const search = args.join(' ');
 
-        if(guildQueue){
+        if(guildQueue.playing){
+            const song = guildQueue.songs[0];
             const [lyrics, icon, title, author] = await Promise.all([
 
-                soleno.requestLyricsFor(guildQueue.nowPlaying.name),
-                soleno.requestIconFor(guildQueue.nowPlaying.name),
-                soleno.requestTitleFor(guildQueue.nowPlaying.name),
-                soleno.requestAuthorFor(guildQueue.nowPlaying.name)
+                soleno.requestLyricsFor(song.name),
+                soleno.requestIconFor(song.name),
+                soleno.requestTitleFor(song.name),
+                soleno.requestAuthorFor(song.name)
             ]);
     
             const embed = new MessageEmbed()

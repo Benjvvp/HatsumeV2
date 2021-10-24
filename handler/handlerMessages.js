@@ -41,6 +41,7 @@ module.exports = async (client) => {
 
     client.on("messageCreate", async (message) => {
         const {author, channel, guild} = message;
+        guild.lang = 'en'
         let lang = guild.lang;
         let prefix = "$$"
 
@@ -87,7 +88,6 @@ module.exports = async (client) => {
             .split(/ +/g)
 
         const cmd = args.shift().toLowerCase()
-        
         if(!client.commands.has(cmd)) return;
         if(!channel.permissionsFor(message.guild.me).has("USE_EXTERNAL_EMOJIS")){
             return message.channel.send('**I need \`USE_EXTERNAL_EMOJIS\` permissions to execute most commands, before using me please give me these permissions.**')
